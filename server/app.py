@@ -13,6 +13,7 @@ def hello():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     data = request.get_json()
+    print(data)
     if data is None:
         return jsonify({"message": "No data has been passed on here."}), 401
     else:
