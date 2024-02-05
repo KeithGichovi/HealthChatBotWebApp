@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Navbar from "../../components/Navbar";
 
-export const Register = () => {
+const Register = () => {
   const [register, setRegister] = useState({
     name: "",
     email: "",
@@ -35,6 +36,7 @@ export const Register = () => {
 
   return (
     <div>
+      <Navbar/>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -69,3 +71,5 @@ export const Register = () => {
     </div>
   );
 };
+
+export default Register;
