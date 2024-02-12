@@ -31,4 +31,3 @@ while True:
 
     conversation.append({"role": "assistant", "content": response.choices[0].message.content})
 
-

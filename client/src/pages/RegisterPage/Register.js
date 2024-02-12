@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
+import CursorAnimated from "../../components/CursorAnimated";
 
 const Register = () => {
   const [register, setRegister] = useState({
@@ -36,6 +37,7 @@ const Register = () => {
 
   return (
     <div>
+      <CursorAnimated/>
       <Navbar/>
       <form onSubmit={handleSubmit}>
         <input
