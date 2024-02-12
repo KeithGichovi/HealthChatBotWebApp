@@ -1,10 +1,15 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 
 export const ThemeContext = createContext(null);
 
 const ThemeContextProvider = ({children}) => {
 
-    const [isDarkTheme, setDarkTheme] = useState(false);
+    const storedTheme  = localStorage.getItem("isDarkTheme")
+    const [isDarkTheme, setDarkTheme] = useState(storedTheme === "true");
+
+    useEffect(()=> {
+        localStorage.setItem("isDarkTheme", isDarkTheme.toString())
+    }, [isDarkTheme])
 
     return (
         <ThemeContext.Provider value={{ isDarkTheme, setDarkTheme}}>
