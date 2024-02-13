@@ -20,7 +20,7 @@ const CursorAnimated = () => {
                 outerAlpha={0.2}
                 innerScale={0.7}
                 outerScale={5}
-                trailingSpeed={10}
+                trailingSpeed={12}
                 color={isDarkTheme ? "144, 224, 239" : "245, 132, 38"}
             />
         </>
