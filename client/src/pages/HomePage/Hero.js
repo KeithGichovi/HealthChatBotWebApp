@@ -19,7 +19,7 @@ const Hero = () => {
     return (
         <div className={`w-full py-16 px-4 ease-in-out duration-300 ${ isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'} h-full sm:h-auto`}>
             <div className="max-w-[1240px] mx-auto grid gap-16 md:gap-8 md:grid-cols-2 justify-center align-center">
-                <div className={'flex flex-col justify-center text-center lg:text-start pt-6 sm:pt-0'}>
+                <div className={'flex flex-col justify-center text-center lg:text-start'}>
                     <h1 className={`sm:text-3xl md:text-4xl lg:text-6xl text-3xl py-2 font-bold `}>Hello, and Welcome
                         to <span className={`ease-in-out duration-300 ${isDarkTheme ? 'text-[#F58426]' : 'text-blue-700'}`}>Maria.</span></h1>
                     <span className={`text-lg ${isDarkTheme ? 'text-gray-400' : 'text-gray-500'}`}>Your Virtual Health And Medical Assistant.</span>
