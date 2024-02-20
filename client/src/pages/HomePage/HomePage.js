@@ -4,6 +4,7 @@ import CursorAnimated from "../../components/CursorAnimated";
 import Hero from "./Hero";
 
 const HomePage = () => {
+
     return (
         <div>
             <CursorAnimated/>
@@ -12,4 +13,5 @@ const HomePage = () => {
         </div>
     )
 }
+
 export default HomePage;

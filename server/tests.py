@@ -1,6 +1,7 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
@@ -17,6 +18,8 @@ while True:
 
     conversation.append({"role": "user", "content": text_input})
 
+    start_time = time.time()
+
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=conversation,
@@ -27,7 +30,11 @@ while True:
         presence_penalty=0
     )
 
-    print("Maria:", response.choices[0].message.content)
+    elapsed_time = time.time() - start_time
+
+    print(f"API Response Time: {elapsed_time:.2f} seconds")
+
+    print("MediSync:", response.choices[0].message.content)
 
     conversation.append({"role": "assistant", "content": response.choices[0].message.content})
 

@@ -19,10 +19,10 @@ const Navbar = () => {
 
 
     return (
-        <div className={`nav-dimensions capitalise ${isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'}`}>
+        <nav className={`nav-dimensions capitalise ${isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'}`}>
             <h1 className="text-4xl font-bold">
                 <Link to='/'>
-                    Maria
+                    MediSync
                 </Link>
             </h1>
             <ul className="hidden md:flex">
@@ -66,7 +66,7 @@ const Navbar = () => {
             <div className={`${!nav ? 'column-nav z-20 h-full transition-colors ' + (isDarkTheme ? 'bg-[#0C1821] border-r-gray-100 text-white duration-700' : 'bg-gray-100 border-r-blue-900 transition-colors') : 'fixed h-full left-[-100%] ease-in-out duration-150'}`}>
                 <h1 className="text-4xl font-bold m-8">
                     <Link to='/'>
-                        Maria
+                        MediSync
                     </Link>
                 </h1>
                 <ul className="m-4">
@@ -103,7 +103,7 @@ const Navbar = () => {
                 }
 
             </div>
-        </div>
+        </nav>
     )
 }
 

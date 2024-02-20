@@ -1,9 +1,12 @@
 import requests
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 url = "https://api.nhs.uk/common-health-questions"
 
 headers = {
-    'Subscription-Key': "52dae55c6aef4e1097f4f644421d0627"
+    'Subscription-Key': os.getenv('NHS_API_KEY')
 }
 
 response = requests.get(url=url, headers=headers)
