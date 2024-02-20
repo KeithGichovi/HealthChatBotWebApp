@@ -9,3 +9,7 @@
 .column-nav {
    @apply fixed flex-col top-0 h-full left-0 w-[60%] border-r ease-in-out duration-300
 }
+
+.form-input-custom {
+   @apply p-4 my-6 w-2/3 h-12 text-[20px] border-b-2 rounded-sm focus:outline-none ease-in-out duration-300
+}

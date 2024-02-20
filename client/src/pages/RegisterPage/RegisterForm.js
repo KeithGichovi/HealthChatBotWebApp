@@ -10,76 +10,78 @@ const RegisterForm = () => {
     last_name:"",
     email: "",
     password: "",
+    confirm_password: "",
     });
 
     const [response, setResponse] = useState(null);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-          const response = await fetch("http://127.0.0.1:5000/register", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(register),
-          });
+            const response = await fetch("http://127.0.0.1:5000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(register),
+            });
 
-          if (!response.ok) {
-            new Error(`HTTP error! Status: ${response.status}`);
-          }
+            if (!response.ok) {
+                new Error(`HTTP error! Status: ${response.status}`);
+            }
 
-          const responseData = await response.json();
-          setResponse(responseData);
+            const responseData = await response.json();
+            setResponse(responseData);
         } catch (e) {
-          console.error("Error: ", e);
+            console.error("Error: ", e);
         }
     };
 
     return (
-        <div className={`w-full py-16 px-4 ease-in-out duration-300 ${ isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'} h-full sm:h-auto`}>
+        <div className={`w-full h-screen sm:h-screen py-16 px-4 ease-in-out duration-300 ${ isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'} h-full sm:h-auto`}>
             {response && <p>{response.message}</p>}
-            <div className="container h-96 w-96 bg-white bg-opacity-10 rounded-2xl shadow-5xl relative z-2 border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm">
+            <div>
                 <form onSubmit={handleSubmit} className='h-full flex flex-col justify-evenly items-center'>
                     <input
                         type="text"
-                        placeholder="enter your first name...."
-                        value={register.name}
+                        placeholder="First Name"
+                        value={register.first_name}
                         onChange={(e) =>
                             setRegister({...register, first_name: e.target.value})
                         }
                         required={true}
-                        className='input-text'
+                        className={`form-input-custom ${isDarkTheme ? 'text-white bg-[#0C1821] border-gray-100 focus:border-amber-500' : 'border-b-gray-400  focus:border-b-2 focus:border-blue-500'}`}
                     />
                     <input
                         type="text"
-                        placeholder="enter your surname...."
-                        value={register.name}
+                        placeholder="Surname"
+                        value={register.last_name}
                         onChange={(e) =>
                             setRegister({...register, last_name: e.target.value})
                         }
                         required={true}
-                        className='input-text'
+                        className={`form-input-custom ${isDarkTheme ? 'text-white bg-[#0C1821] border-gray-100 focus:border-amber-500' : 'border-b-gray-400  focus:border-b-2 focus:border-blue-500'}`}
                     />
                     <input
                         type="email"
-                        placeholder="enter your Email...."
+                        placeholder="Email"
                         value={register.email}
                         onChange={(e) =>
                             setRegister({...register, email: e.target.value})
                         }
                         required={true}
-                        className='input-text'
+                        className={`form-input-custom ${isDarkTheme ? 'text-white bg-[#0C1821] border-gray-100 focus:border-amber-500' : 'border-b-gray-400  focus:border-b-2 focus:border-blue-500'}`}
                     />
                     <input
                         type="password"
-                        placeholder="enter your Password...."
+                        placeholder="Password"
                         value={register.password}
                         onChange={(e) =>
                             setRegister({...register, password: e.target.value})
                         }
-                        required={true}
+                        className={`form-input-custom ${isDarkTheme ? 'text-white bg-[#0C1821] border-gray-100 focus:border-amber-500' : 'border-b-gray-400  focus:border-b-2 focus:border-blue-500'}`}
                     />
                     <button
                         type="submit"
@@ -87,7 +89,6 @@ const RegisterForm = () => {
                         Register
                     </button>
                 </form>
-
             </div>
         </div>
     )
