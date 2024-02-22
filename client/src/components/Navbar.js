@@ -19,7 +19,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`nav-dimensions capitalise ${isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'}`}>
+        <nav className={`nav-dimensions capitalise ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'}`}>
             <h1 className="text-4xl font-bold">
                 <Link to='/'>
                     MediSync
