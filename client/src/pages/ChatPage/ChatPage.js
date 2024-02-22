@@ -4,6 +4,7 @@ import CursorAnimated from "../../components/CursorAnimated";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import TypingAnimation from "../../components/TypingAnimation";
 import { IoRefresh } from "react-icons/io5";
+import ChatSection from "./ChatSection";
 
 const ChatPage = () => {
 
@@ -24,6 +25,8 @@ const ChatPage = () => {
 
         setInputMessage('');
 
+        setIsLoading(true);
+
         try {
             const response = await fetch("http://127.0.0.1:5000/chatbot", {
                 method: "POST",
@@ -33,7 +36,7 @@ const ChatPage = () => {
                 body: JSON.stringify({"user": inputMessage}),
             });
 
-            setIsLoading(true);
+
 
             if (!response.ok) {
                 new Error(`HTTP error! Status: ${response.status}`);
@@ -50,31 +53,19 @@ const ChatPage = () => {
     }
 
   return (
-      <>
+      <div className={`${isDarkTheme ? 'bg-[#0C1821]' : 'bg-white'}`}>
           <CursorAnimated/>
           <Navbar/>
-          <div className={`eas-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
-              <div className="container mx-auto max-w-[1000px]">
-                  <div className={`flex flex-col lg:rounded-3xl min-h-screen ${isDarkTheme ? 'bg-gray-800' : 'bg-gray-100'}`}>
-                      <div className="flex-grow p-6">
+          <div className={`ease-in-out duration-300 lg:pb-8 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
+              <div className="container mx-auto  me-auto max-w-[1000px]">
+                  <div className={`flex flex-col lg:rounded-3xl min-h-screen ease-in-out duration-300 ${isDarkTheme ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                      <div className="flex-grow p-6 ">
                           <div className="flex flex-col space-y-4">
-                              {
-                                  chatLog.map((message, index) => (
-                                      <div key={index} className={`flex ${
-                                          message.role === 'user' ? 'justify-end' : 'justify-start'
-                                      }`}>
-                                          <div className={`${
-                                              message.role === 'user' ? 'bg-blue-500' : 'bg-gray-500'
-                                          } rounded-lg p-4 text-white max-w-sm`}>
-                                              {message.message}
-                                          </div>
-                                      </div>
-                                  ))
-                              }
+                              <ChatSection chatLog={chatLog}/>
                               {
                                   isLoading &&
                                   <div key={chatLog.length} className="flex justify-start">
-                                      <div className="bg-gray-800 rounded-lg p-4 text-white max-w-sm">
+                                      <div className="bg-transparent rounded-lg p-4 max-w-sm">
                                           <TypingAnimation/>
                                       </div>
                                   </div>
@@ -90,6 +81,7 @@ const ChatPage = () => {
                                       placeholder="Message MedisSync..."
                                       value={inputMessage}
                                       onChange={(e) => setInputMessage(e.target.value)}
+                                      required={true}
                                   />
                                   <button
                                       type="submit"
@@ -115,7 +107,7 @@ const ChatPage = () => {
                   </div>
               </div>
           </div>
-      </>
+      </div>
 
   )
 }
