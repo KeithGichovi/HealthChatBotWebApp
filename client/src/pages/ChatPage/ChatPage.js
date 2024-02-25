@@ -16,6 +16,7 @@ const ChatPage = () => {
 
     const handleRefresh = () => {
         setChatLog([]);
+        setIsLoading(false);
     }
 
     const handleSubmit = async (e) => {
