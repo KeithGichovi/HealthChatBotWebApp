@@ -5,6 +5,7 @@ from . import db
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+from flask_jwt_extended import jwt_required
 
 main = Blueprint('user', __name__)
 
@@ -18,14 +19,12 @@ def register():
     data = request.get_json()
     if data is None:
         return jsonify({"message": "Please provide information and register"})
-
     first_name = data['first_name']
     last_name = data['last_name']
     email = data['email']
     password = generate_password_hash(data['password'])
     if User.query.filter_by(email=email).first():
         return jsonify({"message": "A user with this email already exists"}), 401
-
     user = User(first_name=first_name, last_name=last_name, email=email, password=password)
     db.session.add(user)
     db.session.commit()
@@ -33,6 +32,7 @@ def register():
 
 
 @main.route('/chatbot', methods=["POST"])
+@jwt_required()
 def chatbot():
     system_message = (os.getenv('SYSTEM_MESSAGE'))
     conversation = [{"role": "system", "content": system_message}]
@@ -49,7 +49,15 @@ def chatbot():
             max_tokens=4096,
             top_p=1,
             frequency_penalty=0,
-            presence_penalty=0
+            presence_penalty=0,
+
         )
         conversation.append({"role": "assistant", "content": response.choices[0].message.content})
-        return jsonify({"message": response.choices[0].message.content})
+        # print([message for message in conversation if message["role"] != "system"])
+        return jsonify({"message": response.choices[0].message.content}), 200
+
+
+@main.route('/login', methods=['POST'])
+def login():
+    pass
+

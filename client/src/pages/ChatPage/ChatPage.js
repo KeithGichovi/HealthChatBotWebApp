@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from "../../components/Navbar";
 import CursorAnimated from "../../components/CursorAnimated";
 import { ThemeContext } from "../../contexts/ThemeContext";
@@ -9,23 +9,34 @@ import ChatSection from "./ChatSection";
 const ChatPage = () => {
 
     const [inputMessage, setInputMessage] = useState('');
-    const [response, setResponse] = useState(null)
+    const [response, setResponse] = useState(null);
     const [chatLog, setChatLog] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const {  isDarkTheme  } = useContext(ThemeContext);
+    const { isDarkTheme } = useContext(ThemeContext);
+
+    useEffect(() => {
+        const savedChatLog = JSON.parse(localStorage.getItem('chatLog'));
+        if (savedChatLog) {
+            setChatLog(savedChatLog);
+        }
+    }, [chatLog]);
 
     const handleRefresh = () => {
+        // Clear chat history and local storage
         setChatLog([]);
+        localStorage.removeItem('chatLog');
         setIsLoading(false);
-    }
+    };
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-        setChatLog((prev) => [...prev,  {role: "user", message:inputMessage}])
+
+        const updatedChatLog = [...chatLog, { role: "user", message: inputMessage }];
+        setChatLog(updatedChatLog);
+
+        localStorage.setItem('chatLog', JSON.stringify(updatedChatLog));
 
         setInputMessage('');
-
         setIsLoading(true);
 
         try {
@@ -34,10 +45,8 @@ const ChatPage = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({"user": inputMessage}),
+                body: JSON.stringify({ "user": inputMessage }),
             });
-
-
 
             if (!response.ok) {
                 new Error(`HTTP error! Status: ${response.status}`);
@@ -46,12 +55,16 @@ const ChatPage = () => {
             const responseData = await response.json();
             setResponse(responseData);
             setIsLoading(false);
-            setChatLog((prev) => [...prev,  {role: "assistant", message:responseData.message}])
 
+            const updatedChatLogWithResponse = [...updatedChatLog, { role: "assistant", message: responseData.message }];
+            setChatLog(updatedChatLogWithResponse);
+
+            localStorage.setItem('chatLog', JSON.stringify(updatedChatLogWithResponse));
         } catch (e) {
             console.error("Error: ", e);
         }
-    }
+    };
+
 
   return (
       <div className={`${isDarkTheme ? 'bg-[#0C1821]' : 'bg-white'}`}>
@@ -59,7 +72,7 @@ const ChatPage = () => {
           <Navbar/>
           <div className={`ease-in-out duration-300 lg:pb-8 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
               <div className="container mx-auto  me-auto max-w-[1000px]">
-                  <div className={`flex flex-col lg:rounded-3xl min-h-screen ease-in-out duration-300 ${isDarkTheme ? 'bg-gray-800' : 'bg-gray-100'}`}>
+                  <div className={`flex flex-col lg:rounded-3xl min-h-screen ease-in-out duration-300`}>
                       <div className="flex-grow p-6 ">
                           <div className="flex flex-col space-y-4">
                               <ChatSection chatLog={chatLog}/>
