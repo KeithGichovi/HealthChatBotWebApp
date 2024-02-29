@@ -72,7 +72,7 @@ const ChatPage = () => {
           <Navbar/>
           <div className={`ease-in-out duration-300 lg:pb-8 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
               <div className="container mx-auto  me-auto max-w-[1000px]">
-                  <div className={`flex flex-col lg:rounded-3xl min-h-screen ease-in-out duration-300`}>
+                  <div className={`flex flex-col lg:rounded-3xl min-h-[88vh] ease-in-out duration-300`}>
                       <div className="flex-grow p-6 ">
                           <div className="flex flex-col space-y-4">
                               <ChatSection chatLog={chatLog}/>
@@ -86,7 +86,7 @@ const ChatPage = () => {
                               }
                           </div>
                       </div>
-                      <div className={`w-full flex items-center`}>
+                      <div className={`w-full flex items-center z-2`}>
                           <form onSubmit={handleSubmit} className="min-w-[200px] sm:min-w-[400px] md:min-w-[700px] lg:min-w-[910px] flex-none p-6">
                               <div className={`flex rounded-lg border border-gray-700`}>
                                   <input
