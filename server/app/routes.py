@@ -51,13 +51,13 @@ def login():
         "first_name": user.first_name,
         "last_name": user.last_name
     })
-    refresh_token = create_refresh_token(identity={
+    refreshToken = create_refresh_token(identity={
         "id": user.id,
         "email": user.email,
         "first_name": user.first_name,
         "last_name": user.last_name
     })
-    return jsonify({"message": "Successful login", "access_token": access_token, "refresh_token": refresh_token}), 201
+    return jsonify({"message": "Successful login", "access_token": access_token, "refresh_token": refreshToken}), 201
 
 
 @main.route('/chatbot', methods=["POST"])
@@ -82,7 +82,6 @@ def chatbot():
 
         )
         conversation.append({"role": "assistant", "content": response.choices[0].message.content})
-        # print([message for message in conversation if message["role"] != "system"])
         return jsonify({"message": response.choices[0].message.content}), 200
 
 

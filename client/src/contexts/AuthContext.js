@@ -1,5 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
 
+
 export const AuthContext = createContext(null);
 
 const AuthContextProvider = ({ children }) => {
@@ -17,6 +18,21 @@ const AuthContextProvider = ({ children }) => {
             setRefreshToken(null)
         }
     }, [access_token, stored_refresh_token]);
+
+    /**
+     *
+     * @description - handles logging out functionality.
+     * @function - setAuth
+     * @function - setRefreshToken
+     * @function - history
+     *
+     * ***/
+    const logout = () => {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        setAuth(false);
+        setRefreshToken(null);
+    };
 
     const refreshAccessToken = async () => {
         try {
@@ -70,7 +86,7 @@ const AuthContextProvider = ({ children }) => {
     }, [access_token, stored_refresh_token]);
     
     return (
-        <AuthContext.Provider value={{ auth, setAuth, refreshToken, setRefreshToken }}>
+        <AuthContext.Provider value={{ auth, setAuth, refreshToken, setRefreshToken, logout }}>
             {children}
         </AuthContext.Provider>
     )
