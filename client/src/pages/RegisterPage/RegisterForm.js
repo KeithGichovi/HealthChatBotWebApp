@@ -3,9 +3,8 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import {FcGoogle} from "react-icons/fc";
 import {BsApple} from "react-icons/bs";
 import {TiVendorMicrosoft} from "react-icons/ti";
-import { CiWarning } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-
+import Response from "../../components/Response";
 
 const RegisterForm = () => {
 
@@ -57,17 +56,7 @@ const RegisterForm = () => {
             className={`flex h-screen flex-1 flex-col justify-center px-6 mb-10 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
 
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                {response &&
-                    <div className={`flex flex-row bg-red-300 items-center justify-start p-4 rounded-md mb-2`}>
-                        <CiWarning
-                            size={30}
-                            className={`text-white mr-4`}
-                        />
-
-                        <span>{response.message}</span>
-
-                    </div>
-                }
+                {response && <Response response={response}/>}
                 <h2 className={`text-center mb-4 text-3xl font-bold leading-9 tracking-tight ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
                     Welcome Aboard
                 </h2>

@@ -1,11 +1,11 @@
 from flask import Blueprint, jsonify, request
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from .Models import User
 from . import db
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, get_jwt_identity
 
 main = Blueprint('user', __name__)
 
@@ -37,7 +37,27 @@ def register():
 
 @main.route('/login', methods=['POST'])
 def login():
-    pass
+    data = request.get_json()
+    if data is None:
+        return jsonify({"message": "Both Email and password are required"}), 401
+    email = data['email']
+    password = data['password']
+    user = User.query.filter_by(email=email).first()
+    if user is None or not check_password_hash(user.password, password):
+        return jsonify({"message": "Invalid email or password"}), 401
+    access_token = create_access_token(identity={
+        "id": user.id,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name
+    })
+    refresh_token = create_refresh_token(identity={
+        "id": user.id,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name
+    })
+    return jsonify({"message": "Successful login", "access_token": access_token, "refresh_token": refresh_token}), 201
 
 
 @main.route('/chatbot', methods=["POST"])

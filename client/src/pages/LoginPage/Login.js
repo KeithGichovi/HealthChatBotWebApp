@@ -5,11 +5,13 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { FcGoogle } from "react-icons/fc";
 import { TiVendorMicrosoft } from "react-icons/ti";
 import { BsApple } from "react-icons/bs";
-
+import { useNavigate } from "react-router-dom";
+import Response from "../../components/Response";
 
 
 const Login = () => {
 
+    const history = useNavigate();
     const { isDarkTheme } = useContext(ThemeContext);
     const [formData, setFormData] = useState({email: '', password: ''});
     const [response, setResponse] = useState(null);
@@ -32,8 +34,12 @@ const Login = () => {
                 new Error(`HTTP error! Status: ${response.status}`);
             }
 
+            const responseData = await response.json()
+            setResponse(responseData)
 
-
+            if(response.status === 201){
+                history('/chatbot')
+            }
 
 
         }catch (e) {
@@ -48,6 +54,7 @@ const Login = () => {
             <Navbar/>
             <div className={`flex h-screen flex-1 flex-col justify-center px-6 mb-10 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                    {response && <Response response={response}/>}
                     <h2 className={`text-center mb-4 text-3xl font-bold leading-9 tracking-tight ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
                         Sign in to your account
                     </h2>

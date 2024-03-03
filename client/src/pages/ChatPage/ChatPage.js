@@ -19,7 +19,7 @@ const ChatPage = () => {
         if (savedChatLog) {
             setChatLog(savedChatLog);
         }
-    }, [chatLog]);
+    }, []);
 
     const handleRefresh = () => {
         // Clear chat history and local storage
@@ -63,11 +63,13 @@ const ChatPage = () => {
         } catch (e) {
             console.error("Error: ", e);
         }
+
+
     };
 
 
   return (
-      <div className={`${isDarkTheme ? 'bg-[#0C1821]' : 'bg-white'}`}>
+      <article className={`${isDarkTheme ? 'bg-[#0C1821]' : 'bg-white'}`}>
           <CursorAnimated/>
           <Navbar/>
           <div className={`ease-in-out duration-300 lg:pb-8 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
@@ -78,6 +80,7 @@ const ChatPage = () => {
                               <ChatSection chatLog={chatLog}/>
                               {
                                   isLoading &&
+
                                   <div key={chatLog.length} className="flex justify-start">
                                       <div className="bg-transparent rounded-lg p-4 max-w-sm">
                                           <TypingAnimation/>
@@ -121,7 +124,7 @@ const ChatPage = () => {
                   </div>
               </div>
           </div>
-      </div>
+      </article>
 
   )
 }
