@@ -5,9 +5,13 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import TypingAnimation from "../../components/TypingAnimation";
 import { IoRefresh } from "react-icons/io5";
 import ChatSection from "./ChatSection";
+import { useNavigate } from "react-router-dom";
+
+
 
 const ChatPage = () => {
 
+    const history = useNavigate();
     const [inputMessage, setInputMessage] = useState('');
     const [response, setResponse] = useState(null);
     const [chatLog, setChatLog] = useState([]);
@@ -52,9 +56,14 @@ const ChatPage = () => {
                 new Error(`HTTP error! Status: ${response.status}`);
             }
 
+
             const responseData = await response.json();
             setResponse(responseData);
             setIsLoading(false);
+
+            if (response.status === 401){
+                history('/login')
+            }
 
             const updatedChatLogWithResponse = [...updatedChatLog, { role: "assistant", message: responseData.message }];
             setChatLog(updatedChatLogWithResponse);
