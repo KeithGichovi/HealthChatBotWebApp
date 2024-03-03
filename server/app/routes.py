@@ -84,3 +84,11 @@ def chatbot():
         conversation.append({"role": "assistant", "content": response.choices[0].message.content})
         # print([message for message in conversation if message["role"] != "system"])
         return jsonify({"message": response.choices[0].message.content}), 200
+
+
+@main.route('/refresh_token', methods=["POST"])
+@jwt_required(refresh=True)
+def refresh_token():
+    current_user = get_jwt_identity()
+    new_access_token = create_access_token(identity=current_user)
+    return jsonify({"access_token": new_access_token}), 201

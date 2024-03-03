@@ -70,7 +70,7 @@ const ChatPage = () => {
             setResponse(responseData);
             setIsLoading(false);
 
-            if (response.status === 401){
+            if (response.status === 401  || response.status === 422){
                 history('/login')
             }
 
