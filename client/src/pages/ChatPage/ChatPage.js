@@ -6,7 +6,7 @@ import TypingAnimation from "../../components/TypingAnimation";
 import { IoRefresh } from "react-icons/io5";
 import ChatSection from "./ChatSection";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../../contexts/AuthContext";
 
 
 const ChatPage = () => {
@@ -17,6 +17,8 @@ const ChatPage = () => {
     const [chatLog, setChatLog] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { isDarkTheme } = useContext(ThemeContext);
+    const { auth } = useContext(AuthContext);
+
 
     useEffect(() => {
         const savedChatLog = JSON.parse(localStorage.getItem('chatLog'));
@@ -24,9 +26,14 @@ const ChatPage = () => {
             setChatLog(savedChatLog);
         }
     }, []);
-
+    /**
+     *
+     * @function - handleRefresh
+     * @description - clears chat history and clears local storage
+     * @function - setChatLog - clears chat Log.
+     *
+     * */
     const handleRefresh = () => {
-        // Clear chat history and local storage
         setChatLog([]);
         localStorage.removeItem('chatLog');
         setIsLoading(false);
@@ -48,7 +55,9 @@ const ChatPage = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${auth}`
                 },
+
                 body: JSON.stringify({ "user": inputMessage }),
             });
 

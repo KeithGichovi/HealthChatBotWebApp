@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from 'react';
+import React, { useState, useContext} from 'react';
 import Navbar from "../../components/Navbar";
 import CursorAnimated from "../../components/CursorAnimated";
 import { ThemeContext } from "../../contexts/ThemeContext";
@@ -7,12 +7,14 @@ import { TiVendorMicrosoft } from "react-icons/ti";
 import { BsApple } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import Response from "../../components/Response";
+import { AuthContext } from "../../contexts/AuthContext";
 
 
 const Login = () => {
 
     const history = useNavigate();
     const { isDarkTheme } = useContext(ThemeContext);
+    const { setAuth, setRefreshToken } = useContext(AuthContext);
     const [formData, setFormData] = useState({email: '', password: ''});
     const [response, setResponse] = useState(null);
 
@@ -37,7 +39,17 @@ const Login = () => {
             const responseData = await response.json()
             setResponse(responseData)
 
+
             if(response.status === 201){
+
+                const { access_token, refresh_token } = responseData
+
+                localStorage.setItem("access_token", access_token)
+                localStorage.setItem("refresh_token", refresh_token)
+
+                setAuth(access_token)
+                setRefreshToken(refresh_token)
+
                 history('/chatbot')
             }
 
