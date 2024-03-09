@@ -77,11 +77,12 @@ def chatbot():
             temperature=1,
             max_tokens=4096,
             top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
+            frequency_penalty=1,
+            presence_penalty=1,
 
         )
         conversation.append({"role": "assistant", "content": response.choices[0].message.content})
+        print(conversation)
         return jsonify({"message": response.choices[0].message.content}), 200
 
 
