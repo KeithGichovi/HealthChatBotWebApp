@@ -19,6 +19,14 @@ const AuthContextProvider = ({ children }) => {
     }
   }, [access_token, stored_refresh_token]);
 
+  /**
+   *
+   * @function - logout
+   * @description - handles the logout functionality and redirects users to the login page.
+   * @function - setAuth
+   * @function - setRefreshToken
+   *
+   * *****/
   const logout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");

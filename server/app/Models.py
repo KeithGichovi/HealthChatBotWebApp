@@ -1,7 +1,9 @@
+from datetime import datetime
 from . import db
 
 
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
@@ -12,3 +14,22 @@ class User(db.Model):
         return (f'<User id = {self.id}, first_name = {self.first_name}, last_name = {self.last_name},'
                 f' email = {self.email} ,password = {self.password}>')
 
+
+class Chat(db.Model):
+    __tablename__ = 'chat'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<id = {self.id}, user_id={self.user_id} , created_at={self.created_at}>'
+
+
+class Messages(db.Model):
+    __tablename__ = 'message'
+    id = db.Column(db.Integer, primary_key=True)
+    chat_id = db.Column(db.Integer, db.ForeignKey('chat.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    is_bot = db.Column(db.Boolean, default=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)

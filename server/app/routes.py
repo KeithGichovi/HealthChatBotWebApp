@@ -1,6 +1,8 @@
+from datetime import datetime
+
 from flask import Blueprint, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
-from .Models import User
+from .Models import User, Chat, Messages
 from . import db
 from openai import OpenAI
 import os
@@ -32,6 +34,9 @@ def register():
     user = User(first_name=first_name, last_name=last_name, email=email, password=hashed_password)
     db.session.add(user)
     db.session.commit()
+    user_chat = Chat(user_id=user.id)
+    db.session.add(user_chat)
+    db.session.commit()
     return jsonify({"message": "User has been registered successfully"}), 201
 
 
@@ -57,6 +62,11 @@ def login():
         "first_name": user.first_name,
         "last_name": user.last_name
     })
+    user_chats = Chat.query.filter_by(user_id=user.id).first()
+    if user_chats is None:
+        new_chat = Chat(user_id=user.id)
+        db.session.add(new_chat)
+        db.session.commit()
     return jsonify({"message": "Successful login", "access_token": access_token, "refresh_token": refreshToken}), 201
 
 
@@ -64,26 +74,40 @@ def login():
 @jwt_required()
 def chatbot():
     system_message = (os.getenv('SYSTEM_MESSAGE'))
-    conversation = [{"role": "system", "content": system_message}]
     data = request.get_json()
     if data is None:
         return jsonify({"message": "Please send a message to the chatbot"})
     chat = data['user']
-    while True:
-        conversation.append({"role": "user", "content": chat})
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=conversation,
-            temperature=1,
-            max_tokens=4096,
-            top_p=1,
-            frequency_penalty=1,
-            presence_penalty=1,
-
-        )
-        conversation.append({"role": "assistant", "content": response.choices[0].message.content})
-        print(conversation)
-        return jsonify({"message": response.choices[0].message.content}), 200
+    user_id = get_jwt_identity()['id']
+    # Get the user's chat
+    user_chat = Chat.query.filter_by(user_id=user_id).first()
+    # Create a new user message
+    new_user_message = Messages(chat_id=user_chat.id, user_id=user_id, content=chat, created_at=datetime.utcnow())
+    db.session.add(new_user_message)
+    db.session.commit()
+    # Fetch all messages for the user's chat
+    chat_messages = Messages.query.filter_by(chat_id=user_chat.id).order_by(Messages.created_at.asc()).all()
+    # Build the conversation
+    conversation = [{"role": "system", "content": system_message}]
+    for message in chat_messages:
+        role = "user" if message.user_id == user_id and not message.is_bot else "assistant"
+        conversation.append({"role": role, "content": message.content})
+    # Call the chatbot API
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=conversation,
+        temperature=1,
+        max_tokens=4096,
+        top_p=0.8,
+        frequency_penalty=1.2,
+        presence_penalty=1.2,
+    )
+    # Add the chatbots response to the conversation
+    new_bot_message = Messages(chat_id=user_chat.id, user_id=user_id, content=response.choices[0].message.content,
+                               is_bot=True, created_at=datetime.utcnow())
+    db.session.add(new_bot_message)
+    db.session.commit()
+    return jsonify({"message": response.choices[0].message.content}), 200
 
 
 @main.route('/refresh_token', methods=["POST"])

@@ -3,11 +3,12 @@ import Lottie from "lottie-react";
 import * as Animation1 from '../../Lottie/Animattion1.json';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { ReactTyped } from "react-typed";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);
+    const history = useNavigate();
 
     const sequence = [
         "Health Tips.",
@@ -36,10 +37,13 @@ const Hero = () => {
                             showCursor={true}
                         />
                     </p>
-                    <button className={`ease-in-out duration-300 ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'} text-white w-44 mt-2 mx-auto lg:mx-0 rounded-lg px-3.5 py-2 relative cursor-pointer font-medium mb-4 sm:mb-0`}>
-                        <Link to={'/register'}>
-                            Get Started
-                        </Link>
+                    <button
+                        className={`ease-in-out duration-300 ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'} text-white w-44 mt-2 mx-auto lg:mx-0 rounded-lg px-3.5 py-2 relative cursor-pointer font-medium mb-4 sm:mb-0`}
+                        onClick={() => {
+                            history('/register')
+                        }}
+                    >
+                        Get Started
                     </button>
                 </div>
                 <div className="w-full mx-auto ">
