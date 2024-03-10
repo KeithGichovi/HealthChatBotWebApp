@@ -86,7 +86,7 @@ def chatbot():
     db.session.add(new_user_message)
     db.session.commit()
     # Fetch all messages for the user's chat
-    chat_messages = Messages.query.filter_by(chat_id=user_chat.id).order_by(Messages.created_at.asc()).all()
+    chat_messages = Messages.query.filter_by(chat_id=user_chat.id).order_by(Messages.created_at.desc()).limit(5).all()
     # Build the conversation
     conversation = [{"role": "system", "content": system_message}]
     for message in chat_messages:
@@ -94,9 +94,9 @@ def chatbot():
         conversation.append({"role": role, "content": message.content})
     # Call the chatbot API
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-16k",
         messages=conversation,
-        temperature=1,
+        temperature=0.9,
         max_tokens=4096,
         top_p=0.8,
         frequency_penalty=1.2,
