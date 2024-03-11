@@ -86,27 +86,33 @@ def chatbot():
     db.session.add(new_user_message)
     db.session.commit()
     # Fetch all messages for the user's chat
+    # this result will give a reversed flow of the conversation.
     chat_messages = Messages.query.filter_by(chat_id=user_chat.id).order_by(Messages.created_at.desc()).limit(5).all()
     # Build the conversation
+    reversed_chat_messages = reversed(chat_messages)
     conversation = [{"role": "system", "content": system_message}]
-    for message in chat_messages:
+    for message in reversed_chat_messages:
         role = "user" if message.user_id == user_id and not message.is_bot else "assistant"
         conversation.append({"role": role, "content": message.content})
     # Call the chatbot API
     response = client.chat.completions.create(
         model="gpt-3.5-turbo-16k",
         messages=conversation,
-        temperature=0.9,
+        temperature=1.0,
         max_tokens=4096,
         top_p=0.8,
         frequency_penalty=1.2,
         presence_penalty=1.2,
     )
     # Add the chatbots response to the conversation
-    new_bot_message = Messages(chat_id=user_chat.id, user_id=user_id, content=response.choices[0].message.content,
-                               is_bot=True, created_at=datetime.utcnow())
+    new_bot_message = Messages(chat_id=user_chat.id,
+                               user_id=user_id,
+                               content=response.choices[0].message.content,
+                               is_bot=True,
+                               created_at=datetime.utcnow())
     db.session.add(new_bot_message)
     db.session.commit()
+    print(conversation)
     return jsonify({"message": response.choices[0].message.content}), 200
 
 
@@ -116,3 +122,5 @@ def refresh_token():
     current_user = get_jwt_identity()
     new_access_token = create_access_token(identity=current_user)
     return jsonify({"access_token": new_access_token}), 201
+
+
