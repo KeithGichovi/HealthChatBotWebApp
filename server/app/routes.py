@@ -87,14 +87,14 @@ def chatbot():
     db.session.commit()
     # Fetch all messages for the user's chat
     # this result will give a reversed flow of the conversation.
-    chat_messages = Messages.query.filter_by(chat_id=user_chat.id).order_by(Messages.created_at.desc()).limit(5).all()
+    chat_messages = Messages.query.filter_by(chat_id=user_chat.id).order_by(Messages.created_at.desc()).limit(10).all()
     # Build the conversation
     reversed_chat_messages = reversed(chat_messages)
     conversation = [{"role": "system", "content": system_message}]
     for message in reversed_chat_messages:
         role = "user" if message.user_id == user_id and not message.is_bot else "assistant"
         conversation.append({"role": role, "content": message.content})
-    # Call the chatbot API
+    # Call to the chatbot API
     response = client.chat.completions.create(
         model="gpt-3.5-turbo-16k",
         messages=conversation,
@@ -104,7 +104,6 @@ def chatbot():
         frequency_penalty=1.2,
         presence_penalty=1.2,
     )
-    # Add the chatbots response to the conversation
     new_bot_message = Messages(chat_id=user_chat.id,
                                user_id=user_id,
                                content=response.choices[0].message.content,
@@ -112,7 +111,6 @@ def chatbot():
                                created_at=datetime.utcnow())
     db.session.add(new_bot_message)
     db.session.commit()
-    print(conversation)
     return jsonify({"message": response.choices[0].message.content}), 200
 
 
