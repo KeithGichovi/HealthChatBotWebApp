@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 import pymysql
+from app.config import Config  # Adjusted import statement
 
 pymysql.install_as_MySQLdb()
 
@@ -15,8 +16,7 @@ cors = CORS()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('Config.Config')
-
+    app.config.from_object(Config)
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)

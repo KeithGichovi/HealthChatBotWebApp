@@ -40,7 +40,7 @@ const Login = () => {
             setResponse(responseData)
 
 
-            if(response.status === 201){
+            if(response.status === 200){
 
                 const { access_token, refresh_token } = responseData
 

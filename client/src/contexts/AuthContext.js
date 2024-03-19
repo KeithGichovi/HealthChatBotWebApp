@@ -49,7 +49,7 @@ const AuthContextProvider = ({ children }) => {
       }
 
       const responseData = await response.json();
-      if (response.status === 201) {
+      if (response.status === 200) {
         const { access_token, refresh_token } = responseData;
 
         localStorage.setItem("access_token", access_token);
