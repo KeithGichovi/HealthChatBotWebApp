@@ -59,12 +59,11 @@ def login():
         "first_name": user.first_name,
         "last_name": user.last_name
     })
-    user_threads = Thread.query.filter_by(user_id=user.id).all()
-    if user_threads is None:
-        new_thread = client.beta.threads.create()
-        new_user_thread = Thread(user_id=user.id, thread_id=new_thread, created_at=datetime.utcnow())
-        db.session.add(new_user_thread)
-        db.session.commit()
+    new_thread = client.beta.threads.create()
+    print(new_thread.id)
+    new_user_thread = Thread(user_id=user.id, thread_id=new_thread.id, created_at=datetime.utcnow())
+    db.session.add(new_user_thread)
+    db.session.commit()
     return jsonify({"message": "Successful login", "access_token": access_token, "refresh_token": refreshToken}), 200
 
 
