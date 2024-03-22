@@ -8,23 +8,11 @@ load_dotenv()
 
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
-# Step 1: Create an Assistant
-# assistant = client.beta.assistants.create(
-#     name="MediSync",
-#     instructions=os.getenv('SYSTEM_MESSAGE'),
-#     tools=tools_list,
-#     model="gpt-3.5-turbo-16k",
-# )
 
-# Step 2: Create a Thread
-# thread = client.beta.threads.create()
-
-assistant_id = "asst_BVermhKNFGLLwsdMuJzf9PMP"
-
-thread_id = "thread_Ox9emXr14FUivyvgVRnvMfdM"
+Assistant_id = os.getenv("ASSISTANT_ID")
 
 
-def conversation(content):
+def assistant(content, thread_id, assistant_id=Assistant_id):
     # Step 3: Add a Message to a Thread
     message = client.beta.threads.messages.create(
         thread_id=thread_id,
@@ -50,13 +38,7 @@ def conversation(content):
                 thread_id=thread_id
             )
             # Loop through messages and print content based on role
-            print(messages)
-            for msg in reversed(messages.data):
-                role = msg.role
-                content = msg.content[0].text.value
-                print(f"{role.capitalize()}: {content}")
-
-            break
+            return messages
         elif run_status.status == 'requires_action':
             required_actions = run_status.required_action.submit_tool_outputs.model_dump()
             tool_outputs = []
@@ -82,10 +64,6 @@ def conversation(content):
                 tool_outputs=tool_outputs
             )
         else:
-            #  print("Waiting for the Assistant to process...")
-            pass
+            print("Waiting for the Assistant to process...")
 
 
-while True:
-    user_input = input("You: ")
-    conversation(user_input)
