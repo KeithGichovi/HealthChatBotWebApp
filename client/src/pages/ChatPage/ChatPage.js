@@ -41,15 +41,11 @@ const ChatPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const updatedChatLog = [...chatLog, { role: "user", message: inputMessage }];
         setChatLog(updatedChatLog);
-
         localStorage.setItem('chatLog', JSON.stringify(updatedChatLog));
-
         setInputMessage('');
         setIsLoading(true);
-
         try {
             const response = await fetch("http://127.0.0.1:5000/chatbot", {
                 method: "POST",
@@ -57,32 +53,23 @@ const ChatPage = () => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${auth}`
                 },
-
                 body: JSON.stringify({ "user": inputMessage }),
             });
-
             if (!response.ok) {
                 new Error(`HTTP error! Status: ${response.status}`);
             }
-
-
             const responseData = await response.json();
             setResponse(responseData);
             setIsLoading(false);
-
             if (response.status === 401  || response.status === 422){
                 history('/login')
             }
-
             const updatedChatLogWithResponse = [...updatedChatLog, { role: "assistant", message: responseData.message }];
             setChatLog(updatedChatLogWithResponse);
-
             localStorage.setItem('chatLog', JSON.stringify(updatedChatLogWithResponse));
         } catch (e) {
             console.error("Error: ", e);
         }
-
-
     };
 
 

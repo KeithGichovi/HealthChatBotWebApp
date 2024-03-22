@@ -5,10 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-
-
 Assistant_id = os.getenv("ASSISTANT_ID")
 
 

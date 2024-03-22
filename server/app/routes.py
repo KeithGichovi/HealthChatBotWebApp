@@ -1,11 +1,10 @@
 from datetime import datetime
 from flask import Blueprint, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
-from .Models import User, Chat, Thread
+from .Models import User, Thread
 from . import db
 from dotenv import load_dotenv
 from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, get_jwt_identity
-from server.assistant import assistant, client
 from sqlalchemy import desc
 
 main = Blueprint('user', __name__)
@@ -30,9 +29,6 @@ def register():
     hashed_password = generate_password_hash(password)
     user = User(first_name=first_name, last_name=last_name, email=email, password=hashed_password)
     db.session.add(user)
-    db.session.commit()
-    user_chat = Chat(user_id=user.id)
-    db.session.add(user_chat)
     db.session.commit()
     return jsonify({"message": "User has been registered successfully"}), 201
 
@@ -59,8 +55,8 @@ def login():
         "first_name": user.first_name,
         "last_name": user.last_name
     })
+    from server.assistant import client
     new_thread = client.beta.threads.create()
-    print(new_thread.id)
     new_user_thread = Thread(user_id=user.id, thread_id=new_thread.id, created_at=datetime.utcnow())
     db.session.add(new_user_thread)
     db.session.commit()
@@ -76,6 +72,7 @@ def chatbot():
     chat = data['user']
     user_id = get_jwt_identity()['id']
     user_thread = Thread.query.filter_by(user_id=user_id).order_by(desc(Thread.created_at)).first()
+    from server.assistant import assistant
     message_data = assistant(
         content=chat,
         thread_id=user_thread.thread_id,
