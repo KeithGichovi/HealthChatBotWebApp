@@ -51,4 +51,3 @@ class Appointment(db.Model):
         return (f"<Appointment id: {self.id}> user_id: {self.user_id}, location_id: {self.location_id}, "
                 f"appointment_type_id: {self.appointment_type_id} , appointment_time: {self.appointment_time}"
                 f"created_at: {self.created_at}>")
-
