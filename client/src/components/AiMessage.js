@@ -11,6 +11,10 @@ const AiMessage = ({ ChatbotMessageProp }) => {
                 className={`right-0`}
                 remarkPlugins={[remarkGfm, remarkExternalLinks]}
                 rehypePlugins={[rehypeExternalLinks]}
+                components={{
+                    a: (props) => <a className={`underline text-[#F58426] hover:text-blue-300`} {...props}/>,
+                    li: (props) => <li className={`ml-6 py-1`} {...props}/>
+                }}
             >
                 {ChatbotMessageProp}
             </Markdown>
