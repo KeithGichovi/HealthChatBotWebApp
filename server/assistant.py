@@ -1,5 +1,5 @@
 import openai
-from functions import tools_list, get_weather, get_current_datetime_as_json, scrape_medicine_info
+from functions import get_weather, get_current_datetime_as_json, scrape_medicine_info
 import os
 from dotenv import load_dotenv
 import json
