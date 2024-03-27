@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import json
 
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -23,4 +24,3 @@ def get_common_health_questions():
         print(f"Error fetching data: {e}")
 
 
-get_common_health_questions()

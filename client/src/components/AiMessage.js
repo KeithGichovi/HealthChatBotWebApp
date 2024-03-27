@@ -12,8 +12,9 @@ const AiMessage = ({ ChatbotMessageProp }) => {
                 remarkPlugins={[remarkGfm, remarkExternalLinks]}
                 rehypePlugins={[rehypeExternalLinks]}
                 components={{
-                    a: (props) => <a className={`underline text-[#F58426] hover:text-blue-300`} {...props}/>,
-                    li: (props) => <li className={`ml-6 py-1`} {...props}/>
+                    a: (props) => <a className={`semi-bold underline text-gray-800 hover:text-blue-300`} {...props}/>,
+                    li: (props) => <li className={`ml-6 py-1`} {...props}/>,
+                    h1: (props) => <li className={`text-2xl py-1`} {...props}/>
                 }}
             >
                 {ChatbotMessageProp}
