@@ -1,5 +1,5 @@
 import React from 'react';
-import {CiWarning} from "react-icons/ci";
+import { CiWarning } from "react-icons/ci";
 
 
 const Response = ({response}) => {

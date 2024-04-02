@@ -76,6 +76,7 @@ def chatbot():
     message_data = assistant(
         content=chat,
         thread_id=user_thread.thread_id,
+        user_id=user_id
     )
     assistant_response = None
     if message_data is not None:

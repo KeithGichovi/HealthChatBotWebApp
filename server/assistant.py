@@ -1,5 +1,5 @@
 import openai
-from functions import tools_list, get_weather, get_current_datetime_as_json, scrape_medicine_info
+from functions import tools_list, get_weather, get_current_datetime_as_json, scrape_medicine_info, get_user_name
 import os
 from dotenv import load_dotenv
 import json
@@ -10,18 +10,19 @@ client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 Assistant_id = os.getenv("ASSISTANT_ID")
 
 
-def assistant(content, thread_id, assistant_id=Assistant_id):
+def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
     # Step 3: Add a Message to a Thread
     message = client.beta.threads.messages.create(
         thread_id=thread_id,
         role="user",
         content=content
     )
+    get_name = get_user_name(user_id=user_id)
     # Step 4: Run the Assistant
     run = client.beta.threads.runs.create(
         thread_id=thread_id,
         assistant_id=assistant_id,
-        instructions=os.getenv("SYSTEM_MESSAGE")
+        instructions=f"Refer to the user as {get_name['first_name']} {get_name['last_name']}"
     )
     while True:
         # Wait for 5 seconds
@@ -51,6 +52,8 @@ def assistant(content, thread_id, assistant_id=Assistant_id):
                     output = get_current_datetime_as_json()
                 elif func_name == "scrape_medicine_info":
                     output = scrape_medicine_info(medicine=arguments['medicine'])
+                elif func_name == "get_user_name":
+                    output = get_user_name(user_id=user_id)
                 else:
                     raise ValueError(f"Unknown function: {func_name}")
                 # Convert the output to a string

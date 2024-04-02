@@ -8,6 +8,7 @@ from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from app.Models import User
 
 load_dotenv()
 
@@ -53,6 +54,20 @@ tools_list = [
             "required": [
               "medicine"
             ]
+        }
+    },
+    {
+        "name": "get_user_name",
+        "description": "Fetches the first name and last name of a user by their user ID. The chatbot should refer to the user by their first name, last name or both when they make a request. This is a personalisation function that runs infinitely.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer",
+                    "description": "The ID of the user to fetch the name from."
+                }
+            },
+            "required": ["user_id"]
         }
     }
 ]
@@ -126,7 +141,16 @@ def scrape_medicine_info(medicine):
         link_url = link['href']
         # append the dictionary.
         medicine_info["links"].append({'text': link_text, 'url': link_url, "content": link_content})
-
     driver.quit()
     return medicine_info
 
+
+def get_user_name(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    if user:
+        return {
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        }
+    else:
+        return None
