@@ -15,7 +15,7 @@ load_dotenv()
 tools_list = [
     {
         "name": "get_weather",
-        "description": "Get weather data based on latitude and longitude coordinates.",
+        "description": "Get weather data based on latitude and longitude coordinates. based on weather information, provide information and advice on how user can keep safe healthwise based on the weather data.",
         "parameters": {
             "type": "object",
             "properties": {
