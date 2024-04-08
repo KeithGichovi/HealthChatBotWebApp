@@ -1,6 +1,6 @@
 import unittest
-from server.app.config import Config
 from unittest.mock import patch
+from server.app.config import Config  # Import Config after patching
 
 
 class TestConfig(unittest.TestCase):
@@ -19,6 +19,7 @@ class TestConfig(unittest.TestCase):
         mock_token_hex.return_value = 'test_jwt_secret_key'
         config = Config()
         self.assertEqual(config.JWT_SECRET_KEY, 'test_jwt_secret_key')
+
 
 if __name__ == '__main__':
     unittest.main()
