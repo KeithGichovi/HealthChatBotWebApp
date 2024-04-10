@@ -1,5 +1,5 @@
 import openai
-from functions import  get_weather, get_current_datetime_as_json, scrape_medicine_info, get_user_name
+from functions import *
 import os
 from dotenv import load_dotenv
 import json
@@ -22,7 +22,7 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
     run = client.beta.threads.runs.create(
         thread_id=thread_id,
         assistant_id=assistant_id,
-        instructions=f"Refer to the user as {get_name['first_name']} {get_name['last_name']}. This is the user's full name and please greet them by their name when they greet you. You can also just use their first name."
+        instructions=f"Refer to the user as {get_name['first_name']} {get_name['last_name']}. This is the user's full name and please greet them by their first name or both names when they greet you. You can also just use their first name."
     )
     while True:
         # Wait for 5 seconds
@@ -45,7 +45,6 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
             for action in required_actions["tool_calls"]:
                 func_name = action['function']['name']
                 arguments = json.loads(action['function']['arguments'])
-
                 if func_name == "get_weather":
                     output = get_weather(lat=arguments['lat'], lon=arguments['lon'])
                 elif func_name == "get_current_datetime_as_json":
@@ -54,6 +53,8 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
                     output = scrape_medicine_info(medicine=arguments['medicine'])
                 elif func_name == "get_user_name":
                     output = get_user_name(user_id=user_id)
+                elif func_name == "fetch_appointment_type_offered":
+                    output = fetch_appointment_type_offered()
                 else:
                     raise ValueError(f"Unknown function: {func_name}")
                 # Convert the output to a string

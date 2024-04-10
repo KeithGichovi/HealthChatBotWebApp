@@ -8,14 +8,14 @@ from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-from app.Models import User
+from app.Models import User, AppointmentType
 
 load_dotenv()
 
 tools_list = [
     {
         "name": "get_weather",
-        "description": "Get weather data based on latitude and longitude coordinates. based on weather information, provide information and advice on how user can keep safe healthwise based on the weather data.",
+        "description": "Get weather data based on latitude and longitude coordinates. based on weather information, provide information and advice on how user can keep safe in terms of health based on the weather data.",
         "parameters": {
             "type": "object",
             "properties": {
@@ -33,7 +33,7 @@ tools_list = [
     },
     {
         "name": "get_current_datetime_as_json",
-        "description": "Simply get the current date and time.",
+        "description": "Simply get the current date and time. Call this function every second if you need to. Especially when dealing with requests from the user that are time-bound like appointments, and pregnancy estimation, menustration cycle.",
         "parameters": {
             "type": "object",
             "properties": {},
@@ -42,7 +42,7 @@ tools_list = [
     },
     {
         "name": "scrape_medicine_info",
-        "description": "Get the information about the medicine from the NHS website.",
+        "description": "Get the information about the medicine from the NHS website. Provide all links returned by the function to the user.",
         "parameters": {
             "type": "object",
             "properties": {
@@ -52,7 +52,7 @@ tools_list = [
                 }
             },
             "required": [
-              "medicine"
+                "medicine"
             ]
         }
     },
@@ -68,6 +68,15 @@ tools_list = [
                 }
             },
             "required": ["user_id"]
+        }
+    },
+    {
+        "name": "fetch_appointment_type_offered",
+        "description": "Acquires all the types of appointments offered",
+        "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": []
         }
     }
 ]
@@ -170,5 +179,16 @@ def get_common_health_questions():
         print(formatted_data)
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
+
+
+def fetch_appointment_type_offered():
+    types = AppointmentType.query.all()
+    appointments_offered = []
+    for appointment_type in types:
+        appointments_offered.append({
+            "type": appointment_type.type,
+            "description": appointment_type.description
+        })
+    return appointments_offered
 
 

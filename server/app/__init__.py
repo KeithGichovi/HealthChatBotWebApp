@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 import pymysql
-from server.app.config import Config
+from app.config import Config
 
 pymysql.install_as_MySQLdb()
 

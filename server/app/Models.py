@@ -35,8 +35,7 @@ class AppointmentType(db.Model):
     description = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return (f"<AppointmentType id: {self.id} , type: {self.type}, description: {self.description} "
-                f"appointments: {self.appointments} >")
+        return f"<AppointmentType id: {self.id} , type: {self.type}, description: {self.description} >"
 
 
 class Appointment(db.Model):
