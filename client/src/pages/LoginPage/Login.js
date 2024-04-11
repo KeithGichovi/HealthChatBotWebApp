@@ -2,9 +2,6 @@ import React, { useState, useContext} from 'react';
 import Navbar from "../../components/Navbar";
 import CursorAnimated from "../../components/CursorAnimated";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { FcGoogle } from "react-icons/fc";
-import { TiVendorMicrosoft } from "react-icons/ti";
-import { BsApple } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import Response from "../../components/Response";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -124,32 +121,6 @@ const Login = () => {
                             </button>
                         </div>
                     </form>
-                    <p className="mt-5 text-center text-sm text-gray-500 ">
-                        ----------------------
-                        <span className={` text-xl mx-3 font-semibold  ${ isDarkTheme ? "text-[#F58426]" : 'text-blue-700'}`}>
-                           or
-                        </span>
-                        ----------------------
-                    </p>
-                    <div className="flex items-center justify-center mt-4 mb-24">
-                        <button
-                            className={`bg-gray-300 w-1/3 text-gray-900 py-1.5 rounded-md mr-2 flex items-center justify-center`}>
-                            <FcGoogle
-                                size={30}
-                            />
-                        </button>
-                        <button
-                            className={`bg-gray-300 w-1/3 text-gray-900 py-1.5 rounded-md mr-2 flex items-center justify-center`}>
-                            <BsApple size={30}/>
-                        </button>
-                        <button
-                            className="bg-gray-300 w-1/3 text-gray-900 py-1.5 rounded-md flex items-center justify-center">
-                            <TiVendorMicrosoft
-                                size={30}
-                            />
-                        </button>
-                    </div>
-
                 </div>
             </div>
         </>

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, {lazy, useContext} from 'react';
 import {Swiper, SwiperSlide } from "swiper/react";
-import {FreeMode, Pagination} from "swiper/modules";
+import {FreeMode, Lazy, Pagination} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";

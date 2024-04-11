@@ -4,6 +4,7 @@ import CursorAnimated from "../../components/CursorAnimated";
 import Hero from "./Hero";
 import Services from "./Services";
 import ActiveSlider from "./ActiveSlider";
+import Languages from "./Languages";
 
 const HomePage = () => {
 
@@ -14,6 +15,7 @@ const HomePage = () => {
             <Hero/>
             <Services/>
             <ActiveSlider/>
+            <Languages/>
         </div>
     )
 }
