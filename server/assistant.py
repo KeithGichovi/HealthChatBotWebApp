@@ -1,5 +1,5 @@
 import openai
-from functions import *
+from Open_functions import *
 import os
 from dotenv import load_dotenv
 import json
