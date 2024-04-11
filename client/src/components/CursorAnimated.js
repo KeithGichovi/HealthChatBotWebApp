@@ -14,7 +14,7 @@ const CursorAnimated = () => {
         <>
             <AnimatedCursor
                 key={key}
-                clickables={['a', 'input[type="text"]', 'input[type="email"]', 'input[type="number"]', 'input[type="submit"]', 'input[type="image"]', 'label[for]', 'select', 'textarea', 'button', '.link']}
+                clickables={['a', 'label[for]', 'select', 'textarea', 'button', '.link']}
                 innerSize={14}
                 outerSize={32}
                 outerAlpha={0.2}

@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from "../../components/Navbar";
 import CursorAnimated from "../../components/CursorAnimated";
 import Hero from "./Hero";
-import Features from "./Features";
+import Services from "./Services";
+import ActiveSlider from "./ActiveSlider";
 
 const HomePage = () => {
 
@@ -11,7 +12,8 @@ const HomePage = () => {
             <CursorAnimated/>
             <Navbar/>
             <Hero/>
-            <Features/>
+            <Services/>
+            <ActiveSlider/>
         </div>
     )
 }

@@ -87,9 +87,10 @@ def chatbot():
                 break
     if assistant_response:
         latest_message_value = assistant_response.content[0].text.value
+        print(latest_message_value)
         return jsonify({"message": latest_message_value})
     else:
-        return jsonify({"message": "No response from the chatbot"})
+        return jsonify({"message": "No response from the chatbot"}), 500
 
 
 @main.route('/refresh_token', methods=["POST"])
