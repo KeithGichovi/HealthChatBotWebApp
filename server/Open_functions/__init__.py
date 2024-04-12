@@ -3,7 +3,7 @@ from .get_common_health_questions import get_common_health_questions
 from .get_current_datetime_as_json import get_current_datetime_as_json
 from .get_user_name import get_user_name
 from .get_weather import get_weather
-from .scrape_medicine_info import scrape_medicine_info
+from .scrape_medicine_info import Scraper
 
 
 tools_list = [

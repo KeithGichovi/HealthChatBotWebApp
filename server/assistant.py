@@ -8,6 +8,7 @@ load_dotenv()
 
 client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 Assistant_id = os.getenv("ASSISTANT_ID")
+scraper = Scraper()
 
 
 def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
@@ -50,7 +51,7 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
                 elif func_name == "get_current_datetime_as_json":
                     output = get_current_datetime_as_json()
                 elif func_name == "scrape_medicine_info":
-                    output = scrape_medicine_info(medicine=arguments['medicine'])
+                    output = scraper.scrape_medicine_info(medicine=arguments['medicine'])
                 elif func_name == "get_user_name":
                     output = get_user_name(user_id=user_id)
                 elif func_name == "fetch_appointment_type_offered":
