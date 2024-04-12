@@ -7,7 +7,7 @@ const AuthContextProvider = ({ children }) => {
   const stored_refresh_token = localStorage.getItem("refresh_token");
   const [auth, setAuth] = useState(access_token !== null);
   const [refreshToken, setRefreshToken] = useState(
-    stored_refresh_token === null
+    stored_refresh_token !== null
   );
 
   useEffect(() => {
@@ -17,8 +17,9 @@ const AuthContextProvider = ({ children }) => {
     if (!stored_refresh_token) {
       setRefreshToken(null);
     }
+    console.log("Access_token", access_token)
+    console.log("Refresh_Token", refreshToken)
   }, [access_token, stored_refresh_token]);
-
   /**
    *
    * @function - logout

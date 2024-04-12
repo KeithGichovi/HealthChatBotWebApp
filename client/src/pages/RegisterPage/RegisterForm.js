@@ -50,7 +50,7 @@ const RegisterForm = () => {
 
     return (
         <div
-            className={`flex h-screen flex-1 flex-col justify-center px-6 mb-10 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
+            className={`flex h-[800px] sm:h-[1000px] lg:h-[900px] flex-1 flex-col justify-center px-6 mb-10 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
 
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 {response && <Response response={response}/>}
