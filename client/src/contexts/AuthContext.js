@@ -17,8 +17,6 @@ const AuthContextProvider = ({ children }) => {
     if (!stored_refresh_token) {
       setRefreshToken(null);
     }
-    console.log("Access_token", access_token)
-    console.log("Refresh_Token", refreshToken)
   }, [access_token, stored_refresh_token]);
   /**
    *
@@ -61,7 +59,7 @@ const AuthContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error refreshing access token: ", error);
-      setAuth(false);
+      setAuth(null);
     }
   };
 

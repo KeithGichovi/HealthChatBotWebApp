@@ -94,8 +94,8 @@ const ChatPage = () => {
                               }
                           </div>
                       </div>
-                      <div className={`w-full flex items-center z-2`}>
-                          <form onSubmit={handleSubmit} className="w-[90%] sm:min-w-[400px] md:min-w-[700px] lg:min-w-[910px] flex-none p-6">
+                      <div className={`w-full flex items-center z-2 `}>
+                          <form onSubmit={handleSubmit} className="w-[82%] sm:min-w-[400px] md:min-w-[725px] lg:min-w-[900px] flex-none p-6">
                               <div className={`flex rounded-lg border border-gray-700`}>
                                   <input
                                       type="text"
@@ -113,7 +113,7 @@ const ChatPage = () => {
                                   </button>
                               </div>
                           </form>
-                          <div className={`max-w-[100px] sm:min-w-[100px]`}>
+                          <div className={`max-w-[70px] sm:min-w-[100px]`}>
                               <button
                                   type="submit"
                                   className={`${isDarkTheme ? 'bg-[#F58426]' : 'bg-blue-700'} rounded-lg px-4 py-2 font-semibold text-white focus:outline-none hover:bg-[#F58426] transition-colors duration-300`}
