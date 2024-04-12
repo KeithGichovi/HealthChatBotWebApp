@@ -1,4 +1,5 @@
 import openai
+from datetime import datetime
 from Open_functions import *
 import os
 from dotenv import load_dotenv
@@ -24,7 +25,10 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
     run = client.beta.threads.runs.create(
         thread_id=thread_id,
         assistant_id=assistant_id,
-        instructions=f"Refer to the user as {get_name['first_name']} {get_name['last_name']}. This is the user's full name and please greet them by their first name or both names when they greet you. You can also just use their first name."
+        instructions=f"Refer to the user as {get_name['first_name']} {get_name['last_name']} when you greet them. "
+                     f"This is the user's full name and please greet them by their first name or both names when they greet you. "
+                     f"You can also just use their first name. The date today is {datetime.utcnow()} and the day today is {datetime.day}."
+                     f" Refer to the date and day, when you need it for pregnancy estimation, appointments, and other tasks that need date, day and time."
     )
     while True:
         # Wait for 5 seconds
@@ -65,6 +69,8 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
                     output = booking.manage_booking_by_appointment_type(new_appointment_type=arguments['new_appointment_type'])
                 elif func_name == "cancel_booking":
                     output = booking.cancel_booking()
+                elif func_name == "get_bookings":
+                    output = booking.get_bookings()
                 else:
                     raise ValueError(f"Unknown function: {func_name}")
                 # Convert the output to a string

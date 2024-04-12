@@ -1,5 +1,5 @@
+import json
 import sys
-
 sys.path.append("..")
 from app.Models import Appointment, db
 from datetime import datetime
@@ -11,18 +11,33 @@ class ManageBooking:
         self.user_id = user_id
         self.existing_appointment = Appointment.query.filter_by(user_id=self.user_id).all()
 
+    def get_bookings(self):
+        appointments_json = []
+        for appointment in self.existing_appointment:
+            appointments_json.append({
+                "appointment_time": appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S"),
+                "appointment_type_id": appointment.appointment_type_id,
+            })
+        return json.dumps(appointments_json)
+
+    def appointment_history(self):
+        return self.existing_appointment
+
     def manage_booking_by_time(self, new_appointment_time):
-        if self.existing_appointment:
-            if self.existing_appointment.appointment_time >= self.now:
-                self.existing_appointment.appointment_time = new_appointment_time
-                db.session.commit()
-                return {
-                    "message": "Appointment datetime successfully updated",
-                    "appointment_id": self.existing_appointment.id,
-                    "user_id": self.existing_appointment.user_id,
-                    "appointment_time": self.existing_appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S"),
-                    "notes": self.existing_appointment.notes
-                }
+        bookings = self.existing_appointment
+
+        if bookings:
+            for appointment in bookings:
+                if appointment.appointment_time >= self.now:
+                    appointment.appointment_time = new_appointment_time
+                    db.session.commit()
+                    return {
+                        "message": "Appointment datetime successfully updated",
+                        "appointment_id": appointment.id,
+                        "user_id": appointment.user_id,
+                        "appointment_time": appointment.appointment_time.strftime("%Y-%m-%d %H:%M:%S"),
+                        "notes": appointment.notes
+                    }
         else:
             return {
                 "message": "no appointments found, under your name"
@@ -61,7 +76,6 @@ class ManageBooking:
 
     def book_appointment(self, appointment_type_id, appointment_datetime, notes):
         already_booked = []
-
         for x in self.existing_appointment:
             if x.appointment_time >= self.now:
                 already_booked.append({

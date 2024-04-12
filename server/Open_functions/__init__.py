@@ -97,13 +97,13 @@ tools_list = [
     },
     {
         "name": "manage_booking_by_time",
-        "description": "Helps users amend their appointments by choosing a different time.",
+        "description": "Helps users amend their appointments by choosing a different time or day. They can change either or both.",
         "parameters": {
             "type": "object",
             "properties": {
                 "new_appointment_time": {
                     "type": "string",
-                    "description": "The new time of the appointment."
+                    "description": "The Updated Date and Time of the appointment."
                 }
             },
             "required": ["new_appointment_time"]
@@ -126,6 +126,15 @@ tools_list = [
     {
         "name": "cancel_booking",
         "description": "Cancels the appointment by the user",
+        "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
+    },
+    {
+        "name": "get_bookings",
+        "description": "Fetch the upcoming appointments for the user.",
         "parameters": {
             "type": "object",
             "properties": {},

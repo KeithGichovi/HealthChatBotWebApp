@@ -48,6 +48,5 @@ class Appointment(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return (f"<Appointment id: {self.id}> user_id: {self.user_id}, "
-                f"appointment_type_id: {self.appointment_type_id} , appointment_time: {self.appointment_time},"
-                f"notes: {self.notes} created_at: {self.created_at}>")
+        return f"<Appointment id: {self.id}> user_id: {self.user_id}, appointment_type_id: {self.appointment_type_id} , appointment_time: {self.appointment_time}, notes: {self.notes} created_at: {self.created_at}>"
+
