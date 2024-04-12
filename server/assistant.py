@@ -12,6 +12,7 @@ scraper = Scraper()
 
 
 def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
+    booking = ManageBooking(user_id=user_id)
     # Step 3: Add a Message to a Thread
     message = client.beta.threads.messages.create(
         thread_id=thread_id,
@@ -57,7 +58,13 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
                 elif func_name == "fetch_appointment_type_offered":
                     output = fetch_appointment_type_offered()
                 elif func_name == "book_appointment":
-                    output = book_appointment(user_id=user_id, appointment_type_id=arguments['appointment_type_id'], appointment_datetime=arguments['appointment_datetime'], notes=arguments['notes'])
+                    output = booking.book_appointment(appointment_type_id=arguments['appointment_type_id'], appointment_datetime=arguments['appointment_datetime'], notes=arguments['notes'])
+                elif func_name == "manage_booking_by_time":
+                    output = booking.manage_booking_by_time(new_appointment_time=arguments['new_appointment_time'])
+                elif func_name == "manage_booking_by_appointment_type":
+                    output = booking.manage_booking_by_appointment_type(new_appointment_type=arguments['new_appointment_type'])
+                elif func_name == "cancel_booking":
+                    output = booking.cancel_booking()
                 else:
                     raise ValueError(f"Unknown function: {func_name}")
                 # Convert the output to a string

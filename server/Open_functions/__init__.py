@@ -4,7 +4,7 @@ from .get_current_datetime_as_json import get_current_datetime_as_json
 from .get_user_name import get_user_name
 from .get_weather import get_weather
 from .scrape_medicine_info import Scraper
-from .book_appointment import book_appointment
+from .ManageBooking import ManageBooking
 
 tools_list = [
     {
@@ -79,10 +79,6 @@ tools_list = [
         "parameters": {
             "type": "object",
             "properties": {
-                "user_id": {
-                    "type": "number",
-                    "description": "ID of the user booking the appointment."
-                },
                 "appointment_type_id": {
                     "type": "number",
                     "description": "ID representing the type of appointment. Should be fetched from the result of the fetch_appointment_type_offered function."
@@ -97,6 +93,43 @@ tools_list = [
                 }
             },
             "required": ["user_id", "appointment_type_id", "appointment_datetime", "notes"]
+        }
+    },
+    {
+        "name": "manage_booking_by_time",
+        "description": "Helps users amend their appointments by choosing a different time.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "new_appointment_time": {
+                    "type": "string",
+                    "description": "The new time of the appointment."
+                }
+            },
+            "required": ["new_appointment_time"]
+        }
+    },
+    {
+        "name": "manage_booking_by_appointment_type",
+        "description": "Helps users amend their appointments by choosing a different appointment_type, refer to the types of appointments offered.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "new_appointment_type": {
+                    "type": "string",
+                    "description": "The new type of appointment."
+                }
+            },
+            "required": ["new_appointment_type"]
+        }
+    },
+    {
+        "name": "cancel_booking",
+        "description": "Cancels the appointment by the user",
+        "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": []
         }
     }
 ]
