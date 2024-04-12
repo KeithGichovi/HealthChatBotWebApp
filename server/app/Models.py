@@ -41,13 +41,13 @@ class AppointmentType(db.Model):
 class Appointment(db.Model):
     __tablename__ = 'appointments'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
-    appointment_type_id = db.Column(db.Integer, db.ForeignKey('appointment_types.id'))
-    appointment_time = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
+    appointment_type_id = db.Column(db.Integer, db.ForeignKey('appointment_types.id'), nullable=False)
+    appointment_time = db.Column(db.DateTime, nullable=False)
     notes = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return (f"<Appointment id: {self.id}> user_id: {self.user_id}, location_id: {self.location_id}, "
+        return (f"<Appointment id: {self.id}> user_id: {self.user_id}, "
                 f"appointment_type_id: {self.appointment_type_id} , appointment_time: {self.appointment_time},"
                 f"notes: {self.notes} created_at: {self.created_at}>")

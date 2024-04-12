@@ -4,7 +4,7 @@ from .get_current_datetime_as_json import get_current_datetime_as_json
 from .get_user_name import get_user_name
 from .get_weather import get_weather
 from .scrape_medicine_info import Scraper
-
+from .book_appointment import book_appointment
 
 tools_list = [
     {
@@ -71,6 +71,32 @@ tools_list = [
             "type": "object",
             "properties": {},
             "required": []
+        }
+    },
+    {
+        "name": "book_appointment",
+        "description": "Appointments run from 9am to 5pm on weekdays, 9am to 3pm on weekends and public holidays. Book an appointment for a user based on provided details. Before booking an appointment, ask user their preferred date and time. Checks if the user has already booked a future appointment and prevents double booking. Returns a message indicating the success or failure of the booking operation.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "number",
+                    "description": "ID of the user booking the appointment."
+                },
+                "appointment_type_id": {
+                    "type": "number",
+                    "description": "ID representing the type of appointment. Should be fetched from the result of the fetch_appointment_type_offered function."
+                },
+                "appointment_datetime": {
+                    "type": "string",
+                    "description": "Date and time of the appointment the user wants to book the appointment."
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "These are mandatory paragraphs gathered from the interaction with the user, to explain the details of the reason for booking appointment."
+                }
+            },
+            "required": ["user_id", "appointment_type_id", "appointment_datetime", "notes"]
         }
     }
 ]

@@ -56,6 +56,8 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
                     output = get_user_name(user_id=user_id)
                 elif func_name == "fetch_appointment_type_offered":
                     output = fetch_appointment_type_offered()
+                elif func_name == "book_appointment":
+                    output = book_appointment(user_id=user_id, appointment_type_id=arguments['appointment_type_id'], appointment_datetime=arguments['appointment_datetime'], notes=arguments['notes'])
                 else:
                     raise ValueError(f"Unknown function: {func_name}")
                 # Convert the output to a string
