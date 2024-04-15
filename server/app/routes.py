@@ -112,7 +112,8 @@ def get_appointments():
             Appointment.id,
             AppointmentType.type,
             Appointment.appointment_time,
-            Appointment.appointment_end_time
+            Appointment.appointment_end_time,
+            Appointment.notes
     ).join(
         AppointmentType, Appointment.appointment_type_id == AppointmentType.id
     ).filter(
@@ -123,7 +124,7 @@ def get_appointments():
     for appointment in appointments:
         appointment_data = {
             "id": appointment.id,
-            "title": appointment.type,
+            "title": f"{appointment.type} - {appointment.notes }",
             "start": appointment.appointment_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "end": appointment.appointment_end_time.strftime("%Y-%m-%dT%H:%M:%S")
         }
