@@ -4,10 +4,13 @@ import * as Animation1 from '../../Lottie/Animattion1.json';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { ReactTyped } from "react-typed";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../contexts/AuthContext";
+
 
 const Hero = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);
+    const { auth } = useContext(AuthContext);
     const history = useNavigate();
 
     const sequence = [
@@ -37,14 +40,19 @@ const Hero = () => {
                             showCursor={true}
                         />
                     </p>
-                    <button
-                        className={`ease-in-out duration-300 ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'} text-white w-44 mt-2 mx-auto lg:mx-0 rounded-lg px-3.5 py-2 relative cursor-pointer font-medium mb-4 sm:mb-0`}
-                        onClick={() => {
-                            history('/register')
-                        }}
-                    >
-                        Get Started
-                    </button>
+                    {
+                        !auth && (
+                            <button
+                                className={`ease-in-out duration-300 ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'} text-white w-44 mt-2 mx-auto lg:mx-0 rounded-lg px-3.5 py-2 relative cursor-pointer font-medium mb-4 sm:mb-0`}
+                                onClick={() => {
+                                    history('/register')
+                                }}
+                            >
+                                Get Started
+                            </button>
+                        )
+                    }
+
                 </div>
                 <div className="w-full mx-auto ">
                     <Lottie

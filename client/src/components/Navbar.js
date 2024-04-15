@@ -48,6 +48,11 @@ const Navbar = () => {
                 {
                     auth ? (
                         <>
+                            <li className={`p-4 ${location.pathname === '/appointments' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
+                                <Link to="/appointments">
+                                    Appointments
+                                </Link>
+                            </li>
                             <li className={`p-4 ${location.pathname === '/chatbot' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
                                 <Link to="/chatbot">
                                     Chatbot
@@ -65,7 +70,7 @@ const Navbar = () => {
                         <>
                             <li className={`p-4 ${location.pathname === '/register' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
                                 <Link to="/register">
-                                Register
+                                    Register
                                 </Link>
                             </li>
                             <li className={`p-4 ${location.pathname === '/login' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
@@ -99,6 +104,11 @@ const Navbar = () => {
                     {
                         auth ? (
                             <>
+                                <li className={`p-4 border-b border-blue-300 ${location.pathname === '/appointments' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
+                                    <Link to="/appointments">
+                                        Appointments
+                                    </Link>
+                                </li>
                                 <li className={`p-4 border-b border-blue-300 ${location.pathname === '/chatbot' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
                                     <Link to="/chatbot">
                                         Chatbot
@@ -114,7 +124,7 @@ const Navbar = () => {
                             <>
                                 <li className={`p-4 border-b border-blue-300 ${location.pathname === '/register' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
                                     <Link to="/register">
-                                        Register
+                                    Register
                                     </Link>
                                 </li>
                                 <li className={`p-4 ${location.pathname === '/login' ? (isDarkTheme ? 'text-[#F58426]' : 'text-blue-700') : ''}`}>
