@@ -90,9 +90,13 @@ tools_list = [
                 "notes": {
                     "type": "string",
                     "description": "These are mandatory paragraphs gathered from the interaction with the user, to explain the details of the reason for booking appointment.They must be in markdown format."
+                },
+                "appointment_end_time": {
+                    "type": "string",
+                    "description": "Date and time of the appointment ends. All appointments are 20-30 minutes."
                 }
             },
-            "required": ["user_id", "appointment_type_id", "appointment_datetime", "notes"]
+            "required": ["user_id", "appointment_type_id", "appointment_datetime", "notes", "appointment_end_time"]
         }
     },
     {

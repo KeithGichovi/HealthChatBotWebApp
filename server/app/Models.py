@@ -44,6 +44,7 @@ class Appointment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     appointment_type_id = db.Column(db.Integer, db.ForeignKey('appointment_types.id'), nullable=False)
     appointment_time = db.Column(db.DateTime, nullable=False)
+    appointment_end_time = db.Column(db.DateTime, nullable=False)
     notes = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 

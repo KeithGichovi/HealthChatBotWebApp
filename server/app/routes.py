@@ -1,11 +1,14 @@
 from datetime import datetime
 from flask import Blueprint, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
-from .Models import User, Thread
+from .Models import *
 from . import db
 from dotenv import load_dotenv
 from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, get_jwt_identity
 from sqlalchemy import desc
+import sys
+sys.path.append("..")
+from server.assistant import client
 
 main = Blueprint('user', __name__)
 
@@ -55,7 +58,7 @@ def login():
         "first_name": user.first_name,
         "last_name": user.last_name
     })
-    from server.assistant import client
+    # from server.assistant import client
     new_thread = client.beta.threads.create()
     new_user_thread = Thread(user_id=user.id, thread_id=new_thread.id, created_at=datetime.utcnow())
     db.session.add(new_user_thread)
@@ -99,5 +102,33 @@ def refresh_token():
     new_access_token = create_access_token(identity=current_user)
     return jsonify({"access_token": new_access_token}), 200
 
+
+@main.route('/appointments', methods=["GET"])
+@jwt_required()
+def get_appointments():
+    current_user_id = get_jwt_identity()['id']
+
+    appointments = db.session.query(
+            Appointment.id,
+            AppointmentType.type,
+            Appointment.appointment_time,
+            Appointment.appointment_end_time
+    ).join(
+        AppointmentType, Appointment.appointment_type_id == AppointmentType.id
+    ).filter(
+        Appointment.user_id == current_user_id
+    ).all()
+
+    appointments_data = []
+    for appointment in appointments:
+        appointment_data = {
+            "id": appointment.id,
+            "title": appointment.type,
+            "start": appointment.appointment_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "end": appointment.appointment_end_time.strftime("%Y-%m-%dT%H:%M:%S")
+        }
+        appointments_data.append(appointment_data)
+
+    return jsonify(appointments_data)
 
 
