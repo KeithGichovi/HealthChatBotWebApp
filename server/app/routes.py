@@ -1,4 +1,3 @@
-from datetime import datetime
 from flask import Blueprint, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from .Models import *
@@ -14,7 +13,7 @@ main = Blueprint('user', __name__)
 load_dotenv()
 
 
-@main.route('/register', methods=["POST"])
+@main.route('/api/register', methods=["POST"])
 def register():
     data = request.get_json()
     if data is None:
@@ -35,7 +34,7 @@ def register():
     return jsonify({"message": "User has been registered successfully"}), 201
 
 
-@main.route('/login', methods=['POST'])
+@main.route('/api/login', methods=['POST'])
 def login():
     data = request.get_json()
     if data is None:
@@ -65,7 +64,7 @@ def login():
     return jsonify({"message": "Successful login", "access_token": access_token, "refresh_token": refreshToken}), 200
 
 
-@main.route('/chatbot', methods=["POST"])
+@main.route('/api/chatbot', methods=["POST"])
 @jwt_required()
 def chatbot():
     data = request.get_json()
@@ -94,7 +93,7 @@ def chatbot():
         return jsonify({"message": "No response from the chatbot"}), 500
 
 
-@main.route('/refresh_token', methods=["POST"])
+@main.route('/api/refresh_token', methods=["POST"])
 @jwt_required()
 def refresh_token():
     current_user = get_jwt_identity()
@@ -102,7 +101,7 @@ def refresh_token():
     return jsonify({"access_token": new_access_token}), 200
 
 
-@main.route('/appointments', methods=["GET"])
+@main.route('/api/appointments', methods=["GET"])
 @jwt_required()
 def get_appointments():
     current_user_id = get_jwt_identity()['id']

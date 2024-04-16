@@ -11,7 +11,7 @@ pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
-cors = CORS()
+cors = CORS(resources={r"/*": {"origins": "http://localhost:3000"}})
 
 
 def create_app():

@@ -35,7 +35,7 @@ const AuthContextProvider = ({ children }) => {
 
   const refreshAccessToken = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/refresh_token", {
+      const response = await fetch("http://127.0.0.1:5000/api/refresh_token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
