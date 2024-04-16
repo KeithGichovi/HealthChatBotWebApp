@@ -8,7 +8,6 @@ from flask_jwt_extended import jwt_required, create_access_token, create_refresh
 from sqlalchemy import desc
 import sys
 sys.path.append("..")
-from server.assistant import client
 
 main = Blueprint('user', __name__)
 
@@ -58,7 +57,7 @@ def login():
         "first_name": user.first_name,
         "last_name": user.last_name
     })
-    # from server.assistant import client
+    from server.assistant import client
     new_thread = client.beta.threads.create()
     new_user_thread = Thread(user_id=user.id, thread_id=new_thread.id, created_at=datetime.utcnow())
     db.session.add(new_user_thread)

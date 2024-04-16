@@ -47,7 +47,7 @@ class ManageBooking:
     def manage_booking_by_appointment_type(self, new_appointment_type):
         if self.existing_appointment:
             if self.existing_appointment.appointment_type >= self.now:
-                self.existing_appointment.appointment_type = new_appointment_type
+                self.existing_appointment.appointment_type_id = new_appointment_type
                 db.session.commit()
                 return {
                     "message": "Appointment datetime successfully updated",

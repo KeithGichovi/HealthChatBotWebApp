@@ -1,4 +1,12 @@
-FROM ubuntu:latest
-LABEL authors="keithgichovi"
+FROM python:3-alpine3.18
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY . /app
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD python ./run.py
+

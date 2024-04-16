@@ -1,4 +1,11 @@
-FROM ubuntu:latest
-LABEL authors="keithgichovi"
+FROM node:21-alpine3.18
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
