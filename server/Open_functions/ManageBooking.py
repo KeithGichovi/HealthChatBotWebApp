@@ -75,7 +75,7 @@ class ManageBooking:
                 "message": "no appointments found"
             }
 
-    def book_appointment(self, appointment_type_id, appointment_datetime, notes, appointment_end_time):
+    def book_appointment(self, appointment_type_id, appointment_datetime, notes, appointment_end_time, severity_level):
         already_booked = []
         for x in self.existing_appointment:
             if x.appointment_time >= self.now:
@@ -96,6 +96,7 @@ class ManageBooking:
             appointment_time=appointment_datetime,
             notes=notes,
             appointment_end_time=appointment_end_time,
+            severity_level=severity_level,
             created_at=datetime.utcnow()
         )
         db.session.add(new_appointment)
@@ -103,6 +104,7 @@ class ManageBooking:
         return {
             "Appointment_time": new_appointment.appointment_time.strftime("%Y-%m-%dT%H:%M:%S"),
             "Notes": new_appointment.notes,
+            "Severity_level": new_appointment.severity_level,
             "booking time": new_appointment.created_at.strftime("%Y-%m-%dT%H:%M:%S")
         }
 

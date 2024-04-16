@@ -94,11 +94,11 @@ const Login = () => {
                                        className={`block text-sm font-medium leading-6 ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
                                     Password
                                 </label>
-                                <div className="text-sm">
-                                    <a href="#" className={`font-semibold  ${ isDarkTheme ? "text-[#F58426] hover:text-orange-300" : 'text-blue-700 hover:text-blue-500'}`}>
-                                        Forgot password?
-                                    </a>
-                                </div>
+                                {/*<div className="text-sm">*/}
+                                {/*    <a href="#" className={`font-semibold  ${ isDarkTheme ? "text-[#F58426] hover:text-orange-300" : 'text-blue-700 hover:text-blue-500'}`}>*/}
+                                {/*        Forgot password?*/}
+                                {/*    </a>*/}
+                                {/*</div>*/}
                             </div>
                             <div className="mt-2">
                                 <input

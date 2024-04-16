@@ -94,9 +94,13 @@ tools_list = [
                 "appointment_end_time": {
                     "type": "string",
                     "description": "Date and time of the appointment ends. All appointments are 20-30 minutes."
+                },
+                "severity_level": {
+                    "type": "string",
+                    "description": "The severity level of the patient, either module 0, module 1 or module 2."
                 }
             },
-            "required": ["user_id", "appointment_type_id", "appointment_datetime", "notes", "appointment_end_time"]
+            "required": ["user_id", "appointment_type_id", "appointment_datetime", "notes", "appointment_end_time", "severity_level"]
         }
     },
     {

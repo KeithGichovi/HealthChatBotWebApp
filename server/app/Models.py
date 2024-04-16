@@ -45,9 +45,10 @@ class Appointment(db.Model):
     appointment_type_id = db.Column(db.Integer, db.ForeignKey('appointment_types.id'), nullable=False)
     appointment_time = db.Column(db.DateTime, nullable=False)
     appointment_end_time = db.Column(db.DateTime, nullable=False)
+    severity_level = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return f"<Appointment id: {self.id}> user_id: {self.user_id}, appointment_type_id: {self.appointment_type_id} , appointment_time: {self.appointment_time}, notes: {self.notes} created_at: {self.created_at}>"
+        return f"<Appointment id: {self.id}> user_id: {self.user_id}, appointment_type_id: {self.appointment_type_id} , severity_level: {self.severity_level}, appointment_time: {self.appointment_time}, notes: {self.notes} created_at: {self.created_at}>"
 
