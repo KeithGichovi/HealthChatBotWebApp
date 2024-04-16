@@ -18,7 +18,7 @@ const Hero = () => {
         "Appointment Scheduling.",
         "Symptom Checking.",
         "Personalisation.",
-        "The Maria Chatbot."
+        "The MediSync Chatbot."
     ];
 
     return (

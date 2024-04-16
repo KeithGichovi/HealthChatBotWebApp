@@ -108,9 +108,13 @@ tools_list = [
                 "new_appointment_time": {
                     "type": "string",
                     "description": "The Updated Date and Time of the appointment."
+                },
+                "new_appointment_end_time": {
+                    "type": "string",
+                    "description": "The Updated ending Date and Time of the appointment."
                 }
             },
-            "required": ["new_appointment_time"]
+            "required": ["new_appointment_time", "new_appointment_end_time"]
         }
     },
     {

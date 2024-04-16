@@ -64,7 +64,7 @@ def assistant(content, user_id, thread_id, assistant_id=Assistant_id):
                 elif func_name == "book_appointment":
                     output = booking.book_appointment(appointment_type_id=arguments['appointment_type_id'], appointment_datetime=arguments['appointment_datetime'], notes=arguments['notes'], appointment_end_time=arguments["appointment_end_time"])
                 elif func_name == "manage_booking_by_time":
-                    output = booking.manage_booking_by_time(new_appointment_time=arguments['new_appointment_time'])
+                    output = booking.manage_booking_by_time(new_appointment_time=arguments['new_appointment_time'], new_appointment_end_time=arguments['new_appointment_end_time'])
                 elif func_name == "manage_booking_by_appointment_type":
                     output = booking.manage_booking_by_appointment_type(new_appointment_type=arguments['new_appointment_type'])
                 elif func_name == "cancel_booking":

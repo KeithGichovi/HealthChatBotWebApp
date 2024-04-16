@@ -23,13 +23,14 @@ class ManageBooking:
     def appointment_history(self):
         return self.existing_appointment
 
-    def manage_booking_by_time(self, new_appointment_time):
+    def manage_booking_by_time(self, new_appointment_time, new_appointment_end_time):
         bookings = self.existing_appointment
 
         if bookings:
             for appointment in bookings:
                 if appointment.appointment_time >= self.now:
                     appointment.appointment_time = new_appointment_time
+                    appointment.appointment_end_time = new_appointment_end_time
                     db.session.commit()
                     return {
                         "message": "Appointment datetime successfully updated",
