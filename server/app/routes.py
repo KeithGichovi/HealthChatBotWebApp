@@ -43,6 +43,7 @@ def login():
     if data is None:
         return jsonify({"message": "Both Email and password are required"}), 401
     email = data['email']
+    print(email)
     password = data['password']
     user = User.query.filter_by(email=email).first()
     if user is None or not check_password_hash(user.password, password):

@@ -14,3 +14,4 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = secrets.token_hex(16)
     CORS_HEADERS = "Content-Type"
+
