@@ -73,8 +73,9 @@ def chatbot():
     chat = data['user']
     user_id = get_jwt_identity()['id']
     user_thread = Thread.query.filter_by(user_id=user_id).order_by(desc(Thread.created_at)).first()
-    from server.assistant import assistant
-    message_data = assistant(
+    from server.assistant import Assistant
+    assistant = Assistant()
+    message_data = assistant.assistant(
         content=chat,
         thread_id=user_thread.thread_id,
         user_id=user_id

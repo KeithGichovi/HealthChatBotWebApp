@@ -1,11 +1,6 @@
-from .fetch_appointment_type_offered import fetch_appointment_type_offered
-from .get_common_health_questions import get_common_health_questions
-from .get_current_datetime_as_json import get_current_datetime_as_json
-from .get_user_name import get_user_name
-from .get_weather import get_weather
-from .scrape_medicine_info import Scraper
+from .Scraper import Scraper
 from .ManageBooking import ManageBooking
-
+from .OpenFunctions import OpenFunctions
 tools_list = [
     {
         "name": "get_weather",

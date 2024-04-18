@@ -11,7 +11,7 @@ pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
-cors = CORS(resources={r"/*": {"origins": "http://localhost:3000"}})
+cors = CORS(resources={r"/*": {"origins": "https://healthcare-chatbot-brown.vercel.app"}})
 
 
 def create_app():
