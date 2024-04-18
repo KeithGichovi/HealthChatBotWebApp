@@ -43,6 +43,7 @@ def register():
 @main.route('/api/login', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def login():
+    print("Login reached here")
     data = request.get_json()
     if data is None:
         return jsonify({"message": "Both Email and password are required"}), 401
