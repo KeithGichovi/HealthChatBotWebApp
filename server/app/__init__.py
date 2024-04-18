@@ -11,7 +11,7 @@ pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
-cors = CORS(resources={r"/*": {"origins": "https://healthcare-chatbot-brown.vercel.app"}})
+cors = CORS()
 
 
 def create_app():
@@ -20,7 +20,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
-    cors.init_app(app)
+    cors.init_app(app, resources={r"/*": {"origins": "https://healthcare-chatbot-brown.vercel.app"}}, supports_credentials=True)
 
     from .routes import main
     app.register_blueprint(main)

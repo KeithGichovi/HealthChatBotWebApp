@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, get_jwt_identity
 from sqlalchemy import desc
 import sys
+from flask_cors import cross_origin
 sys.path.append("..")
 
 main = Blueprint('user', __name__)
@@ -14,6 +15,7 @@ load_dotenv()
 
 
 @main.route('/api/register', methods=["POST"])
+@cross_origin(supports_credentials=True)
 def register():
     data = request.get_json()
     if data is None:
@@ -35,6 +37,7 @@ def register():
 
 
 @main.route('/api/login', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def login():
     data = request.get_json()
     if data is None:
@@ -65,6 +68,7 @@ def login():
 
 
 @main.route('/api/chatbot', methods=["POST"])
+@cross_origin(supports_credentials=True)
 @jwt_required()
 def chatbot():
     data = request.get_json()
@@ -95,6 +99,7 @@ def chatbot():
 
 
 @main.route('/api/refresh_token', methods=["POST"])
+@cross_origin(supports_credentials=True)
 @jwt_required()
 def refresh_token():
     current_user = get_jwt_identity()
@@ -103,6 +108,7 @@ def refresh_token():
 
 
 @main.route('/api/appointments', methods=["GET"])
+@cross_origin(supports_credentials=True)
 @jwt_required()
 def get_appointments():
     current_user_id = get_jwt_identity()['id']
