@@ -13,6 +13,10 @@ main = Blueprint('user', __name__)
 
 load_dotenv()
 
+@main.route('/api/', methods=["GET"])
+@cross_origin(supports_credentials=True)
+def index():
+    return "Welcome to the API", 200
 
 @main.route('/api/register', methods=["POST"])
 @cross_origin(supports_credentials=True)
