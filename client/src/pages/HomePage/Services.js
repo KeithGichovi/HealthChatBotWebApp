@@ -13,7 +13,6 @@ const Services = () => {
                 Services
             </h2>
             <p className={`text-gray-400 md:text-xl text-justify pb-8 pt-4`}>
-                MediSync is a Triage as a Service software that helps with the onboarding of booking appointments.<br/>
                 MediSync provides the following services.
             </p>
         </div>
