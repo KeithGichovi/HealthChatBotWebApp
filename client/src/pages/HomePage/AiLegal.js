@@ -12,6 +12,8 @@ const AiLegal = () => {
             <p className={`text-gray-400 md:text-xl w-[90%] text-center items-center pb-8 pt-4`}>
                 This chatbot provides general information and should not be used as a substitute for professional medical advice.
                 <br/>
+                This AI chatbot may not always provide accurate responses, so please use discretion when relying on its information.
+                <br/>
                 We do not endorse specific actions. In case of a medical emergency, please seek immediate assistance.
             </p>
         </div>
