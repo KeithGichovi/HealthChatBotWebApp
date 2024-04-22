@@ -11,7 +11,7 @@ const CursorAnimated = () => {
     }, [isDarkTheme]);
 
     return (
-        <div className={`hidden lg:visible`}>
+        <>
             <AnimatedCursor
                 key={key}
                 clickables={['a', 'label[for]', 'select', 'textarea', 'button', '.link']}
@@ -20,10 +20,10 @@ const CursorAnimated = () => {
                 outerAlpha={0.2}
                 innerScale={0.7}
                 outerScale={5}
-                trailingSpeed={12}
+                trailingSpeed={10}
                 color={isDarkTheme ? "144, 224, 239" : "245, 132, 38"}
             />
-        </div>
+        </>
     )
 }
 

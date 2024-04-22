@@ -5,6 +5,8 @@ import Hero from "./Hero";
 import Services from "./Services";
 import ActiveSlider from "./ActiveSlider";
 import Languages from "./Languages";
+import Languages2 from "./Languages2";
+import AiLegal from "./AiLegal";
 
 const HomePage = () => {
 
@@ -15,7 +17,9 @@ const HomePage = () => {
             <Hero/>
             <Services/>
             <ActiveSlider/>
+            <Languages2/>
             <Languages/>
+            <AiLegal/>
         </div>
     )
 }
