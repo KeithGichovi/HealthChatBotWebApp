@@ -12,7 +12,7 @@ const Services = () => {
             <h2 className={`font-bold ease-in-out duration-300 text-4xl ${isDarkTheme ? 'text-white' : 'text-gray-900'}`}>
                 Services
             </h2>
-            <p className={`text-gray-400 md:text-xl text-justify pb-8 pt-4`}>
+            <p className={`text-gray-400 text-[18px] md:text-xl text-justify pb-8 pt-4`}>
                 MediSync provides the following services.
             </p>
         </div>

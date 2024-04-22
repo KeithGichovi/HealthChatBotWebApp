@@ -4,8 +4,7 @@ import { RxArrowTopRight } from "react-icons/rx";
 
 const SwiperCard = ({backgroundImage, title, content, icon}) => {
     return (
-        <div
-            className={`flex flex-col gap-2 lg:gap-6 group relative shadow-lg text-white rounded-2xl px-6 py-2 h-[420px] w-[100%] lg:h-[650px] lg:w-[350px] overflow-hidden cursor-pointer`}>
+        <div className={`flex flex-col gap-2 lg:gap-6 group relative shadow-lg text-white rounded-2xl px-6 py-2 h-[400px] w-[100%] lg:h-[500px] lg:w-[350px] overflow-hidden cursor-pointer`}>
             <div className={`absolute inset-0 bg-cover bg-center`}
                  style={{backgroundImage: `url(${backgroundImage})`}}/>
             <div className={`absolute inset-0 bg-black opacity-10 group-hover:opacity-60`}/>

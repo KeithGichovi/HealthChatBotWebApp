@@ -7,6 +7,7 @@ import ActiveSlider from "./ActiveSlider";
 import Languages from "./Languages";
 import Languages2 from "./Languages2";
 import AiLegal from "./AiLegal";
+import Footer from "./Footer";
 
 const HomePage = () => {
 
@@ -20,6 +21,7 @@ const HomePage = () => {
             <Languages2/>
             <Languages/>
             <AiLegal/>
+            <Footer/>
         </div>
     )
 }
