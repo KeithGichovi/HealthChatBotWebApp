@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://medisync-9489.7tc.aws-eu-central-1.cockroachlabs.cloud:26257/MediSync</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@sql8.freemysqlhosting.net" uuid="0a936cc8-2c8b-4575-80e6-0d9ee265cd82">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://sql8.freemysqlhosting.net/</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
