@@ -19,10 +19,13 @@ const Navbar = () => {
     }
 
     const { isDarkTheme, setDarkTheme } = useContext(ThemeContext);
-    const { auth, logout } = useContext(AuthContext);
+    const { auth, setAuth, setRefreshToken } = useContext(AuthContext);
 
     const handleLogout = () => {
-        logout();
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        setAuth(false);
+        setRefreshToken(null);
         history('/login')
     }
 
