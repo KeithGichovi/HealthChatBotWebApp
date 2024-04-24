@@ -58,7 +58,7 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div>
             <CursorAnimated/>
             <Navbar/>
             <div className={`flex h-[800px] sm:h-[1000px] lg:h-[900px] flex-1 flex-col justify-center px-6 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
@@ -123,7 +123,7 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

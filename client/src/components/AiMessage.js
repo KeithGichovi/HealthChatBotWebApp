@@ -17,13 +17,15 @@ const AiMessage = ({ ChatbotMessageProp }) => {
                     h3: (props) => <h3 className="text-xl font-semibold text-white my-2" {...props}/>,
                     h4: (props) => <h4 className="text-lg font-semibold text-white my-2" {...props}/>,
                     p: (props) => <p className="text-start text-gray-100 my-2" {...props}/>,
-                    ul: (props) => <ul className="p-2 lg:pl-4 list-decimal list-inside" {...props}/>,
-                    ol: (props) => <ol className="p-2 lg:pl-12 list-decimal list-outside" {...props}/>,
-                    blockquote: (props) => <blockquote className="border-l-4 border-gray-400 pl-2 italic my-4" {...props}/>
+                    ul: (props) => <ul className="p-2 lg:pl-4 md:px-2 list-decimal list-inside" {...props}/>,
+                    ol: (props) => <ol className="p-2 lg:pl-12 md:px-2 list-decimal list-outside" {...props}/>,
+                    blockquote: (props) => <blockquote
+                        className="border-l-4 border-gray-400 pl-2 italic my-4" {...props}/>
                 }}
                 children={ChatbotMessageProp}
             />
         </div>
+
     );
 };
 

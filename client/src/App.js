@@ -5,6 +5,7 @@ import Login from "./pages/LoginPage/Login";
 import HomePage from "./pages/HomePage/HomePage";
 import Appointments from "./pages/Appointments/Appointments";
 import ChatPage from "./pages/ChatPage/ChatPage";
+import Logout from "./components/Logout";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
               <Route path="/login" element={<Login/>} />
               <Route path="/appointments" element={<Appointments/>}/>
               <Route path="/chatbot" element={<ChatPage/>}/>
+              <Route path="/logout" element={<Logout/>}/>
           </Routes>
       </BrowserRouter>
   );
