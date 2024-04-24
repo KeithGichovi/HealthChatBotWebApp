@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 
 export const AuthContext = createContext(null);
 
@@ -9,6 +10,8 @@ const AuthContextProvider = ({ children }) => {
   const [refreshToken, setRefreshToken] = useState(
     stored_refresh_token !== null
   );
+
+  const history = useNavigate();
 
   useEffect(() => {
     if (!access_token) {
@@ -31,6 +34,7 @@ const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("refresh_token");
     setAuth(false);
     setRefreshToken(null);
+    history('/login')
   };
 
   const refreshAccessToken = async () => {
