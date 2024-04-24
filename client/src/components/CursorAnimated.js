@@ -11,7 +11,7 @@ const CursorAnimated = () => {
     }, [isDarkTheme]);
 
     return (
-        <>
+        <div>
             <AnimatedCursor
                 key={key}
                 clickables={['a', 'label[for]', 'select', 'textarea', 'button', '.link']}
@@ -23,7 +23,7 @@ const CursorAnimated = () => {
                 trailingSpeed={10}
                 color={isDarkTheme ? "144, 224, 239" : "245, 132, 38"}
             />
-        </>
+        </div>
     )
 }
 

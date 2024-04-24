@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Navbar from "../../components/Navbar";
-import CursorAnimated from "../../components/CursorAnimated";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import TypingAnimation from "../../components/TypingAnimation";
 import { IoRefresh } from "react-icons/io5";
@@ -75,7 +74,7 @@ const ChatPage = () => {
 
   return (
       <article className={`${isDarkTheme ? 'bg-[#0C1821]' : 'bg-white'}`}>
-          <CursorAnimated/>
+          {/*<CursorAnimated/>*/}
           <Navbar/>
           <div className={`ease-in-out duration-300 lg:pb-8 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
               <div className="container mx-auto  me-auto max-w-[1000px]">
