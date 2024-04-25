@@ -11,14 +11,10 @@ const AiMessage = ({ ChatbotMessageProp }) => {
                 remarkPlugins={[remarkGfm, remarkExternalLinks]}
                 rehypePlugins={[rehypeExternalLinks]}
                 components={{
-                    a: (props) => <a className="font-semibold underline text-gray-800 hover:text-blue-300" {...props}/>,
-                    h1: (props) => <h1 className="text-3xl font-bold text-white my-4" {...props}/>,
-                    h2: (props) => <h2 className="text-2xl font-semibold text-white my-3" {...props}/>,
-                    h3: (props) => <h3 className="text-xl font-semibold text-white my-2" {...props}/>,
-                    h4: (props) => <h4 className="text-lg font-semibold text-white my-2" {...props}/>,
+                    a: (props) => <a className="font-semibold underline text-gray-800 hover:text-blue-300" {...props}>{props.children}</a>,
                     p: (props) => <p className="text-start text-gray-100 my-2" {...props}/>,
-                    ul: (props) => <ul className="p-2 lg:pl-4 md:px-2 list-decimal list-inside" {...props}/>,
-                    ol: (props) => <ol className="p-2 lg:pl-12 md:px-2 list-decimal list-outside" {...props}/>,
+                    ul: (props) => <ul className="p-4 lg:pl-4 md:px-2 list-decimal list-inside" {...props}/>,
+                    ol: (props) => <ol className="p-4 lg:pl-12 md:px-2 list-decimal list-outside" {...props}/>,
                     blockquote: (props) => <blockquote
                         className="border-l-4 border-gray-400 pl-2 italic my-4" {...props}/>
                 }}
