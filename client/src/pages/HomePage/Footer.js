@@ -73,22 +73,22 @@ const Footer = () => {
                 <ul className="list-unstyled">
                   <li>
                     <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="">About Us
+                        href="https://www.linkedin.com/in/keith-gitonga-gichovi-baaa271a5/">About Us
                     </a>
                   </li>
                   <li>
                     <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="">Blog
+                        href="https://www.linkedin.com/in/keith-gitonga-gichovi-baaa271a5/">Blog
                     </a>
                   </li>
                   <li>
                     <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="">Github
+                        href="https://github.com/KeithGichovi">Github
                     </a>
                   </li>
                   <li>
                     <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="">Free Products
+                        href='https://www.linkedin.com/in/keith-gitonga-gichovi-baaa271a5/"'>Email me
                     </a>
                   </li>
 
@@ -101,7 +101,7 @@ const Footer = () => {
                 <ul className="list-unstyled">
                   <li>
                     <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="">Terms & Conditions
+                        href="https://github.com/KeithGichovi">Terms & Conditions
                     </a>
                   </li>
                   <li>
@@ -125,7 +125,7 @@ const Footer = () => {
             <div className="text-sm text-gray-600 font-semibold py-1">
               {new Date().getFullYear()}{" "}MediSync Medical Chatbot{" "}
               <a
-                href=""
+                href="https://github.com/KeithGichovi"
                 className="text-gray-600 hover:text-gray-900"
               >
                 by Keith Gichovi

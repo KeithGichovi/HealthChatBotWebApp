@@ -43,7 +43,6 @@ const ActiveSlider = () => {
                                 backgroundImage={item.backgroundImage}
                                 title={item.title}
                                 content={item.content}
-                                icon={item.icon}
                             />
                         </SwiperSlide>
                     ))
