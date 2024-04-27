@@ -93,7 +93,7 @@ const ChatPage = () => {
                           </div>
                       </div>
                       <div className={`w-full flex items-center z-2 ml-2`}>
-                          <form onSubmit={handleSubmit} className="w-[82%] sm:min-w-[400px] md:min-w-[725px] lg:min-w-[900px] flex-none sm:px-4 sm:pr-0 py-4">
+                          <form onSubmit={handleSubmit} className="w-[80%] sm:min-w-[400px] md:min-w-[725px] lg:min-w-[900px] flex-none sm:px-4 sm:pr-0 py-4">
                               <div className={`flex rounded-lg border border-gray-700`}>
                                   <input
                                       type="text"
@@ -111,10 +111,10 @@ const ChatPage = () => {
                                   </button>
                               </div>
                           </form>
-                          <div className={`max-w-[60px] sm:min-w-[100px] sm:px-2`}>
+                          <div className={`max-w-[58px] sm:min-w-[100px] sm:px-2`}>
                               <button
                                   type="submit"
-                                  className={`${isDarkTheme ? 'bg-[#F58426]' : 'bg-blue-700'} rounded-lg px-4 py-2 font-semibold text-white focus:outline-none hover:bg-[#F58426] transition-colors duration-300`}
+                                  className={`${isDarkTheme ? 'ml-3 sm:ml-0 bg-[#F58426]' : 'bg-blue-700'} rounded-lg px-4 py-2 font-semibold text-white focus:outline-none hover:bg-[#F58426] transition-colors duration-300`}
                                   onClick={handleRefresh}
                               >
                                   <IoRefresh
