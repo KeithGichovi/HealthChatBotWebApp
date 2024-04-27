@@ -98,7 +98,7 @@ const ChatPage = () => {
                                   <input
                                       type="text"
                                       className={`flex-grow px-4 py-2 bg-transparent ${isDarkTheme ? 'text-white' : 'text-gray-900'} focus:outline-none`}
-                                      placeholder="Message MedisSync..."
+                                      placeholder="Message MediSync..."
                                       value={inputMessage}
                                       onChange={(e) => setInputMessage(e.target.value)}
                                       required={true}
