@@ -169,7 +169,7 @@ const RegisterForm = () => {
                             type="submit"
                             className={`flex w-full justify-center rounded-md ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'}  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                         >
-                            Sign in
+                            Register
                         </button>
                     </div>
                 </form>

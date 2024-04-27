@@ -93,7 +93,7 @@ const ChatPage = () => {
                           </div>
                       </div>
                       <div className={`w-full flex items-center z-2`}>
-                          <form onSubmit={handleSubmit} className="w-[82%] sm:min-w-[400px] md:min-w-[725px] lg:min-w-[900px] flex-none pr-2 sm:px-4 sm:pr-0 py-4">
+                          <form onSubmit={handleSubmit} className="w-[82%] sm:min-w-[400px] md:min-w-[725px] lg:min-w-[900px] flex-none sm:px-4 sm:pr-0 py-4">
                               <div className={`flex rounded-lg border border-gray-700`}>
                                   <input
                                       type="text"
