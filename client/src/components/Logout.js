@@ -6,9 +6,15 @@ const Logout = () => {
   const history = useNavigate();
   const { setAuth , setRefreshToken } = useContext(AuthContext);
 
+  /**
+   *
+   * @function - handleLogout
+   * @description - handles the logout functionality and redirects users to the login page.
+   * @function - setAuth
+   * @function - setRefreshToken
+   *
+   * *****/
   const handleLogout = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
         setAuth(false);
         setRefreshToken(null);
         history('/login')
@@ -16,8 +22,8 @@ const Logout = () => {
 
     useEffect(() => {
         handleLogout();
-    }, []);
-
+    }, [setAuth]);
+    return null;
 }
 
 export default Logout;

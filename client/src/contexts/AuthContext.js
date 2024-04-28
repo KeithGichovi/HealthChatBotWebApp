@@ -18,20 +18,8 @@ const AuthContextProvider = ({ children }) => {
       setRefreshToken(null);
     }
   }, [access_token, stored_refresh_token]);
-  /**
-   *
-   * @function - logout
-   * @description - handles the logout functionality and redirects users to the login page.
-   * @function - setAuth
-   * @function - setRefreshToken
-   *
-   * *****/
-  const logout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
-    setAuth(false);
-    setRefreshToken(null);
-  };
+
+
 
   const refreshAccessToken = async () => {
     try {
@@ -87,7 +75,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ auth, setAuth, refreshToken, setRefreshToken, logout }}
+      value={{ auth, setAuth, refreshToken, setRefreshToken }}
     >
       {children}
     </AuthContext.Provider>

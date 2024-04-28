@@ -17,7 +17,7 @@ const Login = () => {
 
 
     const handleSubmit  = async  (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
 
@@ -36,13 +36,12 @@ const Login = () => {
             const responseData = await response.json()
             setResponse(responseData)
 
-
             if(response.status === 200){
 
                 const { access_token, refresh_token } = responseData
 
-                localStorage.setItem("access_token", access_token)
-                localStorage.setItem("refresh_token", refresh_token)
+                document.cookie = `access_token=${access_token}; path=/; SameSite=None; Secure=true;`;
+                document.cookie = `refresh_token=${refresh_token}; path=/; SameSite=None; Secure=true;`;
 
                 setAuth(access_token)
                 setRefreshToken(refresh_token)
