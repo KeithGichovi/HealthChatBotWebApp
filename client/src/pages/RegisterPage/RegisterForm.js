@@ -49,8 +49,7 @@ const RegisterForm = () => {
     };
 
     return (
-        <div
-            className={`flex h-[800px] sm:h-[1000px] lg:h-[900px] flex-1 flex-col justify-center px-6 mb-10 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
+        <div className={`flex h-[750px] sm:h-[990px] lg:h-[870px] flex-1 flex-col justify-center px-6 mb-12 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
 
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 {response && <Response response={response}/>}
@@ -64,9 +63,6 @@ const RegisterForm = () => {
 
             <div className="mt-4 mb-12 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-6" onSubmit={handleSubmit}>
-                    {/***
-                     first name
-                     **/}
                     <div>
                         <label htmlFor="firstname"
                                className={`block text-sm font-medium leading-6 ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
@@ -83,10 +79,7 @@ const RegisterForm = () => {
                             />
                         </div>
                     </div>
-                    {/**
-                         * surname
-                         *
-                         * **/}
+
                     <div>
                         <label htmlFor="lastname"
                                className={`block text-sm font-medium leading-6 ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
@@ -103,9 +96,7 @@ const RegisterForm = () => {
                             />
                         </div>
                     </div>
-                    {/***
-                     email
-                     **/}
+
                     <div>
                         <label htmlFor="email"
                                className={`block text-sm font-medium leading-6 ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
@@ -122,9 +113,6 @@ const RegisterForm = () => {
                             />
                         </div>
                     </div>
-                    {/**
-                     password
-                     **/}
                     <div>
                         <div className="flex items-center justify-between">
                             <label htmlFor="password"
@@ -143,9 +131,7 @@ const RegisterForm = () => {
                             />
                         </div>
                     </div>
-                    {/***
-                     confirm password
-                     **/}
+
                     <div>
                         <div className="flex items-center justify-between">
                             <label htmlFor="confirmpassword"
@@ -167,7 +153,7 @@ const RegisterForm = () => {
                     <div>
                         <button
                             type="submit"
-                            className={`flex w-full justify-center rounded-md ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'}  px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                            className={`flex w-full justify-center rounded-md ${isDarkTheme ? 'bg-[#F58426] hover:bg-blue-700' : 'bg-blue-700 hover:bg-[#F58426]'} my-3 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                         >
                             Register
                         </button>
