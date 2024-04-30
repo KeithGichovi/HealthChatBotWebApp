@@ -13,13 +13,12 @@ const Navbar = () => {
     const [nav ,setNav] = useState(true);
     const location = useLocation();
     const history = useNavigate();
+    const { isDarkTheme, setDarkTheme } = useContext(ThemeContext);
+    const { auth, setAuth, setRefreshToken } = useContext(AuthContext);
 
     const handleNav = () => {
         setNav(!nav)
     }
-
-    const { isDarkTheme, setDarkTheme } = useContext(ThemeContext);
-    const { auth, setAuth, setRefreshToken } = useContext(AuthContext);
 
     const handleLogout = () => {
         localStorage.removeItem("access_token");
@@ -29,8 +28,9 @@ const Navbar = () => {
         history('/login')
     }
 
+
     return (
-        <nav className={`nav-dimensions capitalise ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'}`}>
+        <nav className={`nav-dimensions capitalise ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821] text-white' : 'bg-white text-gray-900'} `}>
             <h1 className="text-4xl font-bold">
                 <Link to='/'>
                     MediSync

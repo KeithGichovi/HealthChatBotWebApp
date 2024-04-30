@@ -60,7 +60,7 @@ const Login = () => {
         <div className={`${isDarkTheme ? 'bg-[#0C1821]' : ' ' }`}>
             <CursorAnimated/>
             <Navbar/>
-            <div className={`flex h-[750px] sm:h-[990px] lg:h-[870px] flex-1 flex-col justify-center px-6 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
+            <div className={`flex h-[760px] sm:h-[990px] lg:h-[870px] flex-1 flex-col justify-center px-6 lg:px-8 ease-in-out duration-300 ${isDarkTheme ? 'bg-[#0C1821]' : ''}`}>
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     {response && <Response response={response}/>}
                     <h2 className={`text-center mb-4 text-3xl font-bold leading-9 tracking-tight ${isDarkTheme ? 'text-white' : 'text-gray-900 '}`}>
