@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import Response from "../../components/Response";
 import { AuthContext } from "../../contexts/AuthContext";
 
-
 const Login = () => {
 
     const history = useNavigate();
