@@ -7,7 +7,13 @@ import { BsFillMoonFill } from "react-icons/bs";
 import { HiSun } from "react-icons/hi";
 import { AuthContext } from "../contexts/AuthContext";
 
-
+/***
+ * 
+ * @component Navbar
+ * @description - This component is used to display the navigation bar.
+ * @returns {JSX.Element} - The rendered Navbar component.
+ * 
+ */
 const Navbar = () => {
 
     const [nav ,setNav] = useState(true);
@@ -16,10 +22,26 @@ const Navbar = () => {
     const { isDarkTheme, setDarkTheme } = useContext(ThemeContext);
     const { auth, setAuth, setRefreshToken } = useContext(AuthContext);
 
+    /**
+     * 
+     * @function - handleNav
+     * @description - handles the mobile navigation functionality.
+     * @function - setNav
+     * 
+     */
     const handleNav = () => {
         setNav(!nav)
     }
 
+    /**
+     * 
+     * @function - handleLogout
+     * @description - handles the logout functionality and redirects users to the login page.
+     * @function - setAuth
+     * @function - setRefreshToken
+     * @returns {null}
+     * 
+     */
     const handleLogout = () => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");

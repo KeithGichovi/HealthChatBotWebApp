@@ -3,6 +3,13 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { useNavigate } from "react-router-dom";
 import Response from "../../components/Response";
 
+/***
+ * 
+ * @component RegisterForm
+ * @description - This component is used to display the register form.
+ * @returns {JSX.Element} - The rendered RegisterForm component.
+ * 
+ */
 const RegisterForm = () => {
 
     const { isDarkTheme } = useContext(ThemeContext)
@@ -20,6 +27,14 @@ const RegisterForm = () => {
     const [response, setResponse] = useState(null);
 
 
+    /***
+     * 
+     * @function handleSubmit
+     * @description - This function is used to handle the form submission.
+     * @param {Object} e - The event object.
+     * @returns {Promise<void>} - The promise to handle the form submission.
+     * 
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
 

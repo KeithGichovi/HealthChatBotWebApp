@@ -7,6 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../contexts/AuthContext";
 
 
+/***
+ * 
+ * @component Hero
+ * @description - This component is used to display the hero section of the home page.
+ * @returns {JSX.Element} - The Hero component.
+ * 
+ */
 const Hero = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);

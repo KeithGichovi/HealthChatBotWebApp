@@ -5,7 +5,12 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 
 
-
+/***
+ * 
+ * @component Footer
+ * @description - This component is used to display the footer.
+ * @returns {JSX.Element} - The Footer component.
+ */
 const Footer = () => {
   return (
     <footer className="relative bg-gray-300 pt-8 pb-6">

@@ -2,6 +2,14 @@ import React, { useState, createContext, useEffect } from "react";
 
 export const AuthContext = createContext(null);
 
+/***
+ * 
+ * @component AuthContextProvider
+ * @description - This component is used to provide the authentication context to the child components.
+ * @param {Object} children - The child components.
+ * @returns {JSX.Element} - The rendered AuthContextProvider context.
+ * 
+ */
 const AuthContextProvider = ({ children }) => {
   const access_token = localStorage.getItem("access_token");
   const stored_refresh_token = localStorage.getItem("refresh_token");
@@ -10,6 +18,11 @@ const AuthContextProvider = ({ children }) => {
     stored_refresh_token !== null
   );
 
+  /****
+   * 
+   * @description - This useEffect hook is used to set the auth and refresh token to null if they are not present.
+   * 
+   */
   useEffect(() => {
     if (!access_token) {
       setAuth(null);
@@ -20,7 +33,14 @@ const AuthContextProvider = ({ children }) => {
   }, [access_token, stored_refresh_token]);
 
 
-
+  /***
+   * 
+   * @function refreshAccessToken
+   * @description - This function is used to refresh the access token from the server.
+   * @returns {Promise<void>} - The promise to refresh the access token.
+   * 
+   * 
+   */
   const refreshAccessToken = async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/refresh_token`, {
@@ -52,6 +72,13 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  /**
+   * 
+   * 
+   * @description - This useEffect hook is used to refresh the access token when it is about to expire.
+   * 
+   * 
+   */
   useEffect(() => {
     if (access_token) {
       const decodedToken = JSON.parse(atob(access_token.split(".")[1]));

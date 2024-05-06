@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Response from "../../components/Response";
 import { AuthContext } from "../../contexts/AuthContext";
 
+/***
+ * 
+ * @component Login
+ * @description - This component is used to display the login page.
+ * @returns {JSX.Element} - The Login component.
+ * 
+ */
 const Login = () => {
 
     const history = useNavigate();
@@ -15,6 +22,14 @@ const Login = () => {
     const [response, setResponse] = useState(null);
 
 
+    /***
+     * 
+     * @function handleSubmit
+     * @description - This function is used to handle the form submission.
+     * @param {Object} e - The event object.
+     * @returns {Promise<void>} - The promise to handle the form submission.
+     * 
+     */
     const handleSubmit  = async  (e) => {
         e.preventDefault();
 

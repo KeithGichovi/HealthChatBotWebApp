@@ -1,6 +1,13 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from "../../contexts/ThemeContext";
 
+/***
+ * 
+ * @component Languages2
+ * @description - This component is used to display the languages section.
+ * @returns {JSX.Element} - The Languages2 component.
+ * 
+ */
 const Languages2 = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);

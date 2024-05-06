@@ -8,6 +8,13 @@ import { services } from "../../json/sliderData";
 import SwiperCard from "../../components/SwiperCard";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
+/***
+ * 
+ * @component ActiveSlider
+ * @description - This component is used to display the active slider.
+ * @returns {JSX.Element} - The rendered ActiveSlider component.
+ * 
+ */
 const ActiveSlider = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);

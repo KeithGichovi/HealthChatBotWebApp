@@ -7,7 +7,13 @@ import Appointments from "./pages/Appointments/Appointments";
 import ChatPage from "./pages/ChatPage/ChatPage";
 import Logout from "./components/Logout";
 
-
+/***
+ * 
+ * @component App
+ * @description - This component is used to display the app.
+ * @returns {JSX.Element} - The rendered App component.
+ * 
+ */
 function App() {
   return (
       <BrowserRouter>

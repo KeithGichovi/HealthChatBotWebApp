@@ -1,6 +1,13 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from "../../contexts/ThemeContext";
 
+/***
+ * 
+ * @component Services
+ * @description - This component is used to display the services section.
+ * @returns {JSX.Element} - The Services component.
+ * 
+ */
 const Services = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);

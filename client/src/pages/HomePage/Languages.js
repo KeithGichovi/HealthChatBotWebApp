@@ -3,10 +3,17 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import Svg from '../../images/MedicalSVG.svg';
 import Svg2 from '../../images/MedincalSVG2.svg';
 
+
+/***
+ * 
+ * @component Languages
+ * @description - This component is used to display the languages section.
+ * @returns {JSX.Element} - The Languages component.
+ * 
+ */
 const Languages = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);
-
 
     return (
         <div className={`py-16 px-4 ease-in-out duration-300 ${ isDarkTheme ? 'bg-[#0C1821] text-white' : 'text-gray-900'} max-h-full sm:h-auto`}>

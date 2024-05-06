@@ -1,6 +1,14 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from "../contexts/ThemeContext";
 
+/***
+ * 
+ * @component TypingAnimation
+ * @description - This component is used to display the typing animation, before the chatbot responds.
+ * @returns {JSX.Element} - The rendered TypingAnimation component.
+ * 
+ * 
+ */
 const TypingAnimation = () => {
 
     const { isDarkTheme } = useContext(ThemeContext);

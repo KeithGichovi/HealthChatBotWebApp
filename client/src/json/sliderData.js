@@ -13,6 +13,13 @@ import Symptom from '../images/Symptom.jpg';
 import Health from '../images/healthAdvice.jpg';
 
 
+/**
+ * 
+ * @constant services
+ * @description - This constant is used to store the services data.
+ * @type {Array<Object>}
+ * 
+ */
 export const services = [
     {
         "icon": RxCrop,

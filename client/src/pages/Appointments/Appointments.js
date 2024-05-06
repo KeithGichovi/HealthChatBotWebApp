@@ -9,19 +9,37 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 const localizer = momentLocalizer(moment);
 
-
+/***
+ * 
+ * @component Appointments
+ * @description - This component is used to display the appointments.
+ * @returns {JSX.Element} - The Appointments component.
+ * 
+ */
 const Appointments = () => {
 
     const [appointments, setAppointments] = useState([]);
     const { auth } = useContext(AuthContext);
     const { isDarkTheme } = useContext(ThemeContext);
 
+    /**
+     * 
+     * @function - useEffect
+     * @description - This useEffect hook is used to fetch the appointments from the server.
+     */
     useEffect(() => {
         if (auth) {
             fetchAppointments();
         }
     }, [auth]);
 
+    /***
+     * 
+     * @function fetchAppointments
+     * @description - This function is used to fetch the appointments from the server.
+     * @returns {Promise<void>} - The promise to fetch the appointments.
+     * 
+     */
     const fetchAppointments = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/appointments`, {
@@ -50,6 +68,12 @@ const Appointments = () => {
         }
     };
 
+    /**
+     * @function getCalendarStyles
+     * @description - This function is used to get the calendar styles based on the theme.
+     * @param {*} isDarkTheme 
+     * @returns 
+     */
     function getCalendarStyles(isDarkTheme) {
       const commonStyles = {
         height: 800,

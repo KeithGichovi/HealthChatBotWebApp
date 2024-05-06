@@ -9,6 +9,13 @@ import Languages2 from "./Languages2";
 import AiLegal from "./AiLegal";
 import Footer from "./Footer";
 
+/**
+ * 
+ * @component HomePage
+ * @description - This component is used to display the home page.
+ * @returns {JSX.Element} - The HomePage component.
+ * 
+ */
 const HomePage = () => {
 
     return (

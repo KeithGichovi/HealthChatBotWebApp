@@ -4,9 +4,23 @@ import Lottie from "lottie-react";
 import RobotLight from '../../Lottie/Robot.json';
 import RobotDark from '../../Lottie/Robot2.json';
 
+/***
+ * 
+ * @component AiLegal
+ * @description - This component is used to display the legal information.
+ * @returns {JSX.Element} - The AiLegal component.
+ * 
+ */
 const AiLegal = () => {
     const { isDarkTheme } = useContext(ThemeContext);
 
+    /**
+     * 
+     * @function getAnimationData
+     * @description - This function is used to get the animation data based on the theme.
+     * @returns (Object)
+     * 
+    */
     const getAnimationData = () => {
         return isDarkTheme ? RobotDark : RobotLight;
     };

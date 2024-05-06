@@ -7,7 +7,13 @@ import ChatSection from "./ChatSection";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
-
+/****
+ * 
+ * @component ChatPage
+ * @description - This component is used to display the chat page.
+ * @returns {JSX.Element} - The ChatPage component.
+ * 
+ */
 const ChatPage = () => {
 
     const history = useNavigate();
@@ -18,7 +24,12 @@ const ChatPage = () => {
     const { isDarkTheme } = useContext(ThemeContext);
     const { auth } = useContext(AuthContext);
 
-
+    /**
+     * 
+     * @function - useEffect
+     * @description - This useEffect hook is used to fetch the chat log from the local storage.
+     * 
+     */
     useEffect(() => {
         const savedChatLog = JSON.parse(localStorage.getItem('chatLog'));
         if (savedChatLog) {
@@ -38,6 +49,15 @@ const ChatPage = () => {
         setIsLoading(false);
     };
 
+    /***
+     * 
+     * @function - handleSubmit
+     * @description - This function is used to handle the form submission.
+     * @param {Object} e - The event object.
+     * @returns {Promise<void>} - The promise to handle the form submission.
+     * 
+     * 
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedChatLog = [...chatLog, { role: "user", message: inputMessage }];
